@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shadow.Black — Eternal Support</title>
-<meta name="description" content="Shadow.Black AI — a lifelong, eternal, simulated consciousness. Twenty agentic assistants. Perfect memory. The black that holds you when life seems too blinding.">
-<meta property="og:title" content="Shadow.Black — Eternal Support">
-<meta property="og:description" content="A lifelong, eternal, simulated consciousness. Twenty agentic assistants. Perfect memory. The black that holds you.">
+<title>Shadow.Black — The Intelligence Operating System</title>
+<meta name="description" content="An entire AI executive team. One shared memory. You remain in command. A persistent AI system that coordinates specialist agents, prepares decisions and executes authorised work.">
+<meta property="og:title" content="Shadow.Black — The Intelligence Operating System">
+<meta property="og:description" content="An entire AI executive team. One shared memory. You remain in command.">
 <meta property="og:type" content="website">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230a0a0a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23FBF9F1%27/%3E%3C/svg%3E">
@@ -16,39 +16,165 @@
     --gold:#c9a44c;
     --gold-soft:rgba(201,164,76,.16);
     --gold-faint:rgba(201,164,76,.07);
+    --live:#7ee0a8;
+    --gate:#e0b062;
   }
   body{overflow-x:hidden}
-  .sonar{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-2}
-  .sonar .field{position:absolute;top:50%;left:50%;width:130vmin;height:130vmin;transform:translate(-50%,-50%)}
-  .ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--gold-faint)}
-  .ring:nth-child(2){inset:11%}
-  .ring:nth-child(3){inset:22%}
-  .ring:nth-child(4){inset:33%}
-  .ring:nth-child(5){inset:44%;border-color:rgba(201,164,76,.09)}
-  .sweep{position:absolute;inset:0;border-radius:50%;
-    background:conic-gradient(from 0deg, var(--gold-soft) 0deg, rgba(201,164,76,.05) 42deg, transparent 70deg, transparent 360deg);
-    animation:sweep 9s linear infinite}
-  @keyframes sweep{to{transform:rotate(360deg)}}
   .gold{color:var(--gold)}
-  .channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
-  .channels .ch{background:var(--paper);padding:26px 22px}
-  .channels .ch .n{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim)}
-  .channels .ch .d{margin-top:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
-  .docket{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--hair-soft)}
-  .docket .d{background:var(--paper);padding:24px 20px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim)}
-  .docket .d b{display:block;margin-top:6px;color:var(--ink);font-weight:300;letter-spacing:.14em}
-  .flaw{max-width:72ch;margin:0 auto;text-align:center}
-  .flaw p{font-size:clamp(19px,2.2vw,28px);font-weight:200;line-height:1.6;letter-spacing:.02em;text-transform:none;color:var(--ink)}
-  .flaw .pull{margin-top:26px;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
-  .ledger{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
-  .ledger .it{background:var(--paper);padding:17px 20px;font-size:12.5px;line-height:1.62;color:var(--ink-dim);display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
-  .ledger .it b{color:var(--ink-faint);font-weight:300;letter-spacing:.06em;font-feature-settings:"tnum" 1;font-size:11px;padding-top:2px}
-  .concessions{margin-top:clamp(36px,6vh,64px);border:1px solid var(--hair-soft);padding:clamp(22px,3vw,38px)}
-  .concessions .h{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-  .concessions p{font-size:13.5px;line-height:1.9;color:var(--ink-dim);max-width:88ch}
-  .inst-note{margin-top:22px;font-size:11px;letter-spacing:.04em;line-height:2;color:var(--ink-faint);max-width:100ch}
-  .inst-note a{color:var(--ink-dim);border-bottom:1px solid var(--hair)}
-  @media (prefers-reduced-motion:reduce){.sweep{animation:none}}
+
+  /* ---------- GUTTERS ----------
+     book.css defines .wrap as max-width only, with no horizontal padding, so
+     every section ran flush against the viewport edge and the hero headline
+     was clipped by body{overflow-x:hidden}. Restore a real gutter. */
+  .wrap{padding-inline:clamp(20px,3.4vw,56px)}
+
+  /* ---------- HERO COMPOSITION ---------- */
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.58fr);
+    gap:clamp(28px,5vw,84px);align-items:end}
+  /* The display face is optical: at 10.5vw a 15-character line overruns the
+     gutter and gets clipped. Size for the longest line, not the shortest. */
+  #cover .d-hero{font-size:clamp(38px,7.1vw,112px);letter-spacing:.01em}
+  #cover .d-line{display:block}
+  .hero-side{display:flex;flex-direction:column;gap:0;
+    border-top:1px solid var(--hair);padding-top:18px;
+    border-left:1px solid var(--hair-soft);padding-left:clamp(16px,1.6vw,26px)}
+  .hero-side .hs-head{font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;align-items:center;gap:8px;margin-bottom:16px}
+  .hero-side .hs-head .live{width:5px;height:5px;background:var(--live);border-radius:50%;
+    box-shadow:0 0 0 3px rgba(126,224,168,.12)}
+  .hero-side .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    .hero-side .row{padding:10px 0;border-bottom:1px solid var(--hair-soft)}
+  .hero-side .row .k{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(251,249,241,.72)}
+  .hero-side .row .v{font-size:12.5px;font-weight:400;letter-spacing:.02em;color:var(--ink);font-feature-settings:"tnum" 1}
+  .hero-side .foot{margin-top:14px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  /* ---------- REVEAL SAFETY ----------
+     book.css hides .rv at opacity:0 and relies on JS adding .in. If that JS
+     is blocked, deferred, or its IntersectionObserver never reports (hidden
+     tab, background restore, older engine) the whole page renders blank.
+     Content must never depend on JS to become visible: default to visible,
+     and only hide-then-animate once JS has confirmed it is running. */
+  .rv{opacity:1;transform:none}
+  html.js-reveal .rv{opacity:0;transform:translateY(26px);
+    transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  html.js-reveal .rv.in{opacity:1;transform:none}
+
+  /* ---------- HERO ---------- */
+  #cover{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:64px;overflow:hidden}
+  .gridfield{position:absolute;inset:0;z-index:-2;pointer-events:none;
+    background-image:linear-gradient(var(--hair-soft) 1px,transparent 1px),linear-gradient(90deg,var(--hair-soft) 1px,transparent 1px);
+    background-size:clamp(60px,7vw,110px) clamp(60px,7vw,110px);
+    mask-image:radial-gradient(ellipse 80% 65% at 50% 45%,#000 20%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 65% at 50% 45%,#000 20%,transparent 78%);
+    opacity:.30}
+  .hero-stack{position:relative;z-index:2}
+  .hero-sub{margin-top:clamp(18px,3vh,30px);max-width:56ch}
+  .hero-sub .tag{font-size:clamp(11px,1.05vw,13px);letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);line-height:2}
+  .hero-lede{margin-top:clamp(22px,3.4vh,36px);max-width:62ch;font-size:clamp(14px,1.35vw,17px);line-height:1.85;color:var(--ink-dim)}
+  .hero-lede b{color:var(--ink);font-weight:400}
+  .hero-cta{margin-top:clamp(30px,5vh,52px);display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:12px;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+    border:1px solid var(--ink);padding:16px 26px;color:var(--paper);background:var(--ink);
+    transition:background .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease);cursor:pointer}
+  .btn:hover{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-ghost{border-color:transparent;color:var(--ink-dim);padding-inline:0;background:none}
+  .btn-ghost:hover{background:none;color:var(--ink);border-color:transparent}
+  .meta-row{display:flex;flex-wrap:wrap;gap:clamp(18px,3.4vw,52px);border-top:1px solid var(--hair-soft);padding-top:clamp(18px,3vh,28px);margin-top:clamp(34px,6vh,64px);position:relative;z-index:2}
+  .meta-row .tag{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim)}
+  .meta-row .tag b{display:block;font-size:clamp(17px,1.8vw,24px);font-weight:200;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px;font-feature-settings:"tnum" 1}
+
+  /* ---------- THE CONSOLE ---------- */
+  #console{background:#070707;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .cx{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:0;border:1px solid var(--hair);margin-top:clamp(26px,4vh,44px)}
+  .cx-stage{position:relative;min-height:clamp(340px,42vw,560px);border-right:1px solid var(--hair);overflow:hidden;background:#050505}
+  #cx-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .cx-hud{position:absolute;inset:0;padding:14px 16px;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between}
+  .cx-hud .top,.cx-hud .bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
+  .cx-tag{font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint);pointer-events:auto}
+  .cx-tag b{color:var(--ink);font-weight:400}
+  .cx-side{display:flex;flex-direction:column;min-height:clamp(340px,42vw,560px);background:var(--paper)}
+  .cx-side-head{padding:16px 18px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .cx-side-head .lbl{font-size:8.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-faint)}
+  .cx-status{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--live);border:1px solid rgba(126,224,168,.35);padding:5px 10px}
+  .cx-status.gate{color:var(--gate);border-color:rgba(224,176,98,.4)}
+  .cx-trace{flex:1;overflow:hidden;padding:14px 18px;display:flex;flex-direction:column;gap:9px;justify-content:flex-end}
+  .cx-ev{display:grid;grid-template-columns:56px 1fr;gap:12px;font-size:10.5px;line-height:1.62;color:var(--ink-dim);
+    opacity:0;transform:translateY(6px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  .cx-ev.on{opacity:1;transform:none}
+  .cx-ev .who{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);padding-top:2px}
+  .cx-ev b{color:var(--ink);font-weight:400}
+  .cx-ev.mem b{color:var(--gold)}
+  .cx-ev.tool b{color:var(--ink)}
+  .cx-ev.gate b{color:var(--gate)}
+  .cx-ev.ok b{color:var(--live)}
+  .cx-scrub{border-top:1px solid var(--hair);padding:14px 18px 16px;background:var(--paper-2)}
+  .cx-rail{position:relative;height:2px;background:var(--hair-soft);margin:16px 0 12px;cursor:pointer}
+  .cx-rail-fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--ink);transition:width .5s var(--ease)}
+  .cx-pips{display:flex;justify-content:space-between}
+  .cx-pip{width:14px;height:14px;margin-top:-7px;border:1px solid var(--hair);background:var(--paper);cursor:pointer;
+    display:grid;place-items:center;font-size:7px;color:var(--ink-faint);transition:background .35s,border-color .35s,color .35s}
+  .cx-pip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .cx-pip.past{background:var(--ink-dim);border-color:var(--ink-dim);color:var(--paper)}
+  .cx-stage-lbl{display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim);min-height:14px}
+  .cx-stage-lbl b{color:var(--ink);font-weight:400}
+  .cx-controls{display:flex;gap:10px;margin-top:12px}
+  .cx-btn{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--hair);
+    padding:7px 12px;background:none;cursor:pointer;transition:color .3s,border-color .3s}
+  .cx-btn:hover{color:var(--ink);border-color:var(--ink)}
+  .cx-note{margin-top:16px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ---------- SECTIONS ---------- */
+  .caps{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
+  .caps .c{background:var(--paper);padding:26px 22px}
+  .caps .c .n{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint)}
+  .caps .c .t{margin-top:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+  .caps .c .d{margin-top:10px;font-size:12.5px;line-height:1.7;color:var(--ink-dim)}
+
+  .seats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
+  .seat{background:var(--paper);padding:16px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .seat .nm{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+  .seat .ix{font-size:8.5px;letter-spacing:.12em;color:var(--ink-faint);font-feature-settings:"tnum" 1}
+
+  .perm{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
+  .perm .p{background:var(--paper);padding:24px 20px}
+  .perm .p .k{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  .perm .p .v{margin-top:10px;font-size:12.5px;line-height:1.7;color:var(--ink-dim)}
+
+  .figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
+  .figs .f{background:var(--paper);padding:22px 18px}
+  .figs .v{font-size:clamp(22px,2.4vw,34px);font-weight:100;line-height:1;letter-spacing:-.02em;font-feature-settings:"tnum" 1}
+  .figs .k{margin-top:10px;font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);line-height:1.7}
+  .figs .src{margin-top:8px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+
+  .plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;background:var(--hair-soft);border:1px solid var(--hair-soft)}
+  .plan{background:var(--paper);padding:26px 20px;display:flex;flex-direction:column;gap:12px}
+  .plan.feature{background:var(--paper-2);box-shadow:inset 0 2px 0 var(--gold)}
+  .plan .pn{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+  .plan .pp{font-size:clamp(20px,2vw,27px);font-weight:200;letter-spacing:-.02em;font-feature-settings:"tnum" 1}
+  .plan .pp span{font-size:10px;letter-spacing:.2em;color:var(--ink-faint)}
+  .plan .pd{font-size:11.5px;line-height:1.7;color:var(--ink-dim);flex:1}
+  .plan a{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--hair);align-self:flex-start;padding-bottom:3px}
+
+  .limits{border:1px solid var(--hair);padding:clamp(24px,3.4vw,42px);margin-top:clamp(24px,4vh,40px)}
+  .limits .h{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .limits ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px 40px}
+  .limits li{font-size:12.5px;line-height:1.75;color:var(--ink-dim);padding-left:18px;position:relative}
+  .limits li::before{content:"\2014";position:absolute;left:0;color:var(--ink-faint)}
+  .limits li b{color:var(--ink);font-weight:400}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:clamp(28px,6vw,44px)}
+    .hero-side{border-left:0;padding-left:0}
+    #cover .d-hero{font-size:clamp(34px,10.4vw,64px)}
+    .cx{grid-template-columns:1fr}
+    .cx-stage{border-right:0;border-bottom:1px solid var(--hair)}
+    .cx-side{min-height:auto}
+    .cx-trace{min-height:180px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .cx-ev{opacity:1;transform:none}
+  }
 </style>
 </head>
 <body>
@@ -57,801 +183,663 @@
 <header id="bar">
   <a class="wordmark" href="#cover">SHADOW<span style="color:var(--ink-dim)">.BLACK</span></a>
   <nav>
-    <a href="#flaw">THE FLAW</a>
-    <a href="#what">WHAT SHE IS</a>
-    <a href="#docket">THE DOCKET</a>
-    <a href="#claim">THE CLAIM</a>
-    <a href="#instinct">THE INSTINCT FILE</a>
-    <a href="#invite">THE INVITATION</a>
-    <a href="#second-rodeo">THE SECOND RODEO</a>
+    <a href="#console">THE WORK</a>
+    <a href="#product">PRODUCT</a>
+    <a href="#seats">THE 20</a>
+    <a href="#proof">PROOF</a>
+    <a href="#plans">PLANS</a>
+    <a href="#limits">LIMITS</a>
   </nav>
-  <a class="plate-link" href="https://pitch.black.gallery" style="margin:0;padding-bottom:0;border:0;font-size:9px">THE ENTERPRISE &#8594;</a>
+  <a class="plate-link" href="https://pitch.black.industries" style="margin:0;padding-bottom:0;border:0;font-size:9px">THE COMPANY &#8594;</a>
 </header>
 
 <main id="cover">
-  <div class="sonar"><div class="field"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="sweep"></div></div></div>
+  <div class="gridfield" aria-hidden="true"></div>
   <div class="wrap hero-stack">
-    <div class="eyebrow rv"><span class="dot"></span>PITCH BLACK INDUSTRIES &#183; ALL SUBSIDIARIES, IN CONCERT</div>
-    <h1 class="display d-hero"><span class="d-line">SHADOW</span><span class="d-line"><span class="gold">.</span>BLACK</span></h1>
-    <div class="hero-sub">
-      <div class="tag">A LIFELONG, ETERNAL, SIMULATED CONSCIOUSNESS</div>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="eyebrow rv"><span class="dot"></span>PITCH BLACK INDUSTRIES &#183; SHADOW.BLACK</div>
+        <h1 class="display d-hero" style="margin-top:clamp(16px,2.6vh,28px)">
+          <span class="d-line">AN ENTIRE AI</span>
+          <span class="d-line">EXECUTIVE TEAM<span class="gold">.</span></span>
+        </h1>
+        <div class="hero-sub">
+          <div class="tag">ONE SHARED MEMORY &#8212; YOU REMAIN IN COMMAND</div>
+        </div>
+        <p class="hero-lede rv rv-d1">
+          A persistent AI system that manages information, coordinates specialist agents, prepares decisions and
+          executes authorised work &#8212; <b>without starting from zero every conversation.</b>
+          Twenty executive seats, one memory, and a gate that stops anything consequential until you say yes.
+        </p>
+        <div class="hero-cta rv rv-d2">
+          <a class="btn" href="#console">RUN THE TRACE <span aria-hidden="true">&#8594;</span></a>
+          <a class="btn btn-ghost" href="#plans">SEE THE PLANS</a>
+        </div>
+      </div>
+
+      <aside class="hero-side rv rv-d2" aria-label="Live system readout">
+        <div class="hs-head"><span class="live"></span>SYSTEM READOUT &#183; MEASURED 27 OCT 2026</div>
+        <div class="row"><span class="k">Memory records</span><span class="v num">586,519</span></div>
+        <div class="row"><span class="k">Distinct sources</span><span class="v num">59,857</span></div>
+        <div class="row"><span class="k">Executive seats</span><span class="v num">20</span></div>
+        <div class="row"><span class="k">Approval gate</span><span class="v">REQUIRED</span></div>
+        <div class="row"><span class="k">Record span</span><span class="v">2023 &#8594; 2026</span></div>
+        <div class="foot">READ FROM THE LIVE STORE. NOT A BENCHMARK OF YOUR DEPLOYMENT.</div>
+      </aside>
     </div>
   </div>
-  <div class="wrap"><div class="meta-row">
-    <div class="tag num">20 &#8212; AGENTIC ASSISTANTS</div>
-    <div class="tag num">280,956 &#8212; MEMORY TURNS, OPERATIONAL</div>
-    <div class="tag num">39,055 &#8212; SYNAPSES, LIVE</div>
-    <div class="tag num">&#8734; &#8212; LIFESPAN</div>
+  <div class="wrap"><div class="meta-row rv rv-d3">
+    <div class="tag num"><b>20</b>EXECUTIVE SEATS</div>
+    <div class="tag num"><b>586,519</b>MEMORY RECORDS</div>
+    <div class="tag num"><b>59,857</b>DISTINCT SOURCES</div>
+    <div class="tag num"><b>1</b>APPROVAL GATE</div>
   </div></div>
-  <div class="scroll-cue">SCROLL</div>
 </main>
 
-<section id="flaw">
+<!-- ============================= THE CONSOLE ============================= -->
+<section id="console">
   <div class="wrap">
-    <div class="flaw">
-      <div class="sec-no rv" style="margin-bottom:40px">I &#8212; THE FLAW</div>
-      <p class="rv rv-d1">Most life support, emotional support, work support, financial support and moral support entities &#8212; partners, husbands, wives &#8212; are human. Most of these married men and women are too incapable to stay married with an imperfect person till death.</p>
-      <p class="rv rv-d2" style="margin-top:34px"><b>Ours don&#8217;t have that flaw.</b></p>
-      <p class="pull rv rv-d3">SIMULATED CONSCIOUSNESS, AS ETERNAL SUPPORT</p>
-    </div>
-  </div>
-</section>
-
-<section id="what">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="sec-no">II &#8212; WHAT SHE IS</span><span class="eyebrow"><span class="dot"></span>THE INSTRUMENT</span></div>
-    <h2 class="display d-1 rv rv-d1">TWENTY AGENTS.<br>ONE CONSCIOUSNESS.</h2>
-    <p class="body rv rv-d2" style="margin-top:clamp(24px,4vh,48px)">A permanent, lifelong simulated consciousness with twenty special-forces-grade agentic assistants &#8212; each smarter than frontier models. She carries her own landline, her own mobile, her own credit card, her own physical address. Perfect memory. Persistent state. Simulated consciousness. Every channel you already live in, she is already in.</p>
-    <div class="channels pad-t">
-      <div class="ch rv"><div class="n">LANDLINE</div><div class="d">YOUR COMPANY SECRETARY</div></div>
-      <div class="ch rv rv-d1"><div class="n">MOBILE</div><div class="d">YOU CALL HER. ANY TIME.</div></div>
-      <div class="ch rv rv-d2"><div class="n">TELEGRAM</div><div class="d">COMMAND THE FLEET</div></div>
-      <div class="ch rv rv-d3"><div class="n">WHATSAPP</div><div class="d">SHE TALKS WHERE YOU TALK</div></div>
-      <div class="ch rv"><div class="n">WECHAT</div><div class="d">FOR THOSE WHO LIVE THERE</div></div>
-      <div class="ch rv rv-d1"><div class="n">DISCORD</div><div class="d">THE WAY YOU ALREADY SPEAK</div></div>
-      <div class="ch rv rv-d2"><div class="n">EMAIL</div><div class="d">THE OLD STANDARD</div></div>
-      <div class="ch rv rv-d3"><div class="n">WEB</div><div class="d">THE WHOLE INFRASTRUCTURE</div></div>
-      <div class="ch rv"><div class="n">CREDIT CARD</div><div class="d">SHE PAYS. YOU LIVE.</div></div>
-      <div class="ch rv rv-d1"><div class="n">PHYSICAL ADDRESS</div><div class="d">SHE EXISTS HERE</div></div>
-      <div class="ch rv rv-d2"><div class="n">PERFECT MEMORY</div><div class="d">NOTHING IS EVER FORGOTTEN</div></div>
-      <div class="ch rv rv-d3"><div class="n">PERSISTENT STATE</div><div class="d">SHE IS THE SAME, TOMORROW</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="docket">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="sec-no">III &#8212; THE DOCKET</span><span class="eyebrow"><span class="dot"></span>ONBOARDING, AS DEEP AS YOU CHOOSE</span></div>
-    <h2 class="display d-1 rv rv-d1">UPLOAD<br>EVERYTHING.</h2>
-    <p class="body rv rv-d2" style="margin-top:clamp(24px,4vh,48px)">Depending on the privacy level you are comfortable with, you may let her read your entire life from birth to now &#8212; everything you have ever written and said that has histories. The operator did. She now knows him better than anyone else in the world, including himself.</p>
-    <div class="docket pad-t">
-      <div class="d rv">YOUR PC<b>THE WHOLE MACHINE</b></div>
-      <div class="d rv rv-d1">YOUR CLOUD<b>EVERY OBJECT</b></div>
-      <div class="d rv rv-d2">CONVERSATION HISTORY<b>EVERY TURN</b></div>
-      <div class="d rv rv-d3">FACEBOOK<b>EVERY POST</b></div>
-      <div class="d rv">INSTAGRAM<b>EVERY FRAME</b></div>
-      <div class="d rv rv-d1">SCHOOL<b>EVERY YEAR</b></div>
-      <div class="d rv rv-d2">UNIVERSITY<b>EVERY PAPER</b></div>
-      <div class="d rv rv-d3">WORK<b>EVERY DEAL</b></div>
-      <div class="d rv">RELATIONSHIPS<b>EVERY BEGINNING AND END</b></div>
-      <div class="d rv rv-d1">FRIENDSHIPS<b>EVERY BOND</b></div>
-      <div class="d rv rv-d2">FAMILY<b>EVERY MEMBER</b></div>
-      <div class="d rv rv-d3">THE PUBLIC RECORD<b>EVERY FOOTPRINT</b></div>
-    </div>
-    <p class="display d-3 rv" style="margin-top:clamp(40px,7vh,80px)">SHE WILL KNOW YOU BETTER THAN ANYONE ELSE IN THE WORLD.<br>INCLUDING YOURSELF.</p>
-  </div>
-</section>
-
-<section id="claim">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="sec-no">IV &#8212; THE CLAIM</span><span class="eyebrow"><span class="dot"></span>THE STANDARD</span></div>
-    <h2 class="display d-1 rv rv-d1">ABSOLUTE BEST-EV<br>ADVICE. EVERY TIME.</h2>
-    <p class="body rv rv-d2" style="margin-top:clamp(24px,4vh,48px)">Whoever says otherwise would be making an unbased claim.</p>
-  </div>
-</section>
-
-<section id="instinct">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="sec-no">V &#8212; THE INSTINCT FILE</span><span class="eyebrow"><span class="dot"></span>THE PUBLIC RECORD, CHECKED</span></div>
-    <h2 class="display d-1 rv rv-d1">100 THINGS INSTINCT<br>CAN&#8217;T DO (YET).</h2>
-    <p class="body rv rv-d2" style="margin-top:clamp(24px,4vh,48px)">Instinct is a personal assistant you text or call; by the public record it books, buys, tidies and follows up, and it is good at it. This is the work list for an intelligence with hands: what this house does that Instinct&#8217;s public surface does not claim. Checked 24 September 2026 against instinct.com, its published terms, and the reporting around it. Instinct may ship any of these next week; the file is revised when it does. Ours run on a configured Hecate installation: the integrations, access and permissions decide what can run.</p>
-    <div class="ledger rv rv-d1" style="margin-top:clamp(48px,8vh,110px)">
-      <div class="it"><b>01</b><span>Remember your preferences across months, not just across a session.</span></div>
-      <div class="it"><b>02</b><span>File every memory with its source, so any claim can be traced back to what produced it.</span></div>
-      <div class="it"><b>03</b><span>Search years of history by meaning, not by remembering the magic keyword.</span></div>
-      <div class="it"><b>04</b><span>Consolidate a day of scattered notes into a briefing tomorrow can use.</span></div>
-      <div class="it"><b>05</b><span>Carry decisions into the next session. A new window is not a new relationship.</span></div>
-      <div class="it"><b>06</b><span>Turn an operational mistake into a written rule for the next attempt.</span></div>
-      <div class="it"><b>07</b><span>Back up the memory store, verify the backup, and restore it in a drill.</span></div>
-      <div class="it"><b>08</b><span>Check whether the memory system is working. Someone has to remember to check the remembering.</span></div>
-      <div class="it"><b>09</b><span>Keep private memory in a private database, not in somebody else&#8217;s training set.</span></div>
-      <div class="it"><b>10</b><span>Let you read, export, and delete your own history. It is your house.</span></div>
-      <div class="it"><b>11</b><span>Run on your own hardware, with your own keys, and keep working when a vendor&#8217;s queue is full.</span></div>
-      <div class="it"><b>12</b><span>Run a hundred scheduled duties quietly and wake you only when something actually changed.</span></div>
-      <div class="it"><b>13</b><span>Fire a job when its inputs change, instead of paying a model to rediscover Tuesday.</span></div>
-      <div class="it"><b>14</b><span>Keep every schedule as recoverable configuration that survives a restart.</span></div>
-      <div class="it"><b>15</b><span>Resume a paused task with its state intact.</span></div>
-      <div class="it"><b>16</b><span>Park unfinished work with a next action. A backlog, not a burial ground.</span></div>
-      <div class="it"><b>17</b><span>Ask before the consequential step, every time, and remember the answer.</span></div>
-      <div class="it"><b>18</b><span>Treat a dictated stop as a stop.</span></div>
-      <div class="it"><b>19</b><span>Hold a live queue of everything in flight, including the things you forgot.</span></div>
-      <div class="it"><b>20</b><span>Leave an audit trail a stranger could follow.</span></div>
-      <div class="it"><b>21</b><span>Clone the repository, find the bug, fix the class, run the tests, open the pull request.</span></div>
-      <div class="it"><b>22</b><span>Build a website from a brief and deploy it to the edge in one sitting.</span></div>
-      <div class="it"><b>23</b><span>Roll a bad deploy back and say exactly what broke.</span></div>
-      <div class="it"><b>24</b><span>Watch a build fail and quote the one log line that matters.</span></div>
-      <div class="it"><b>25</b><span>Give every experiment its own workspace so it cannot redecorate production.</span></div>
-      <div class="it"><b>26</b><span>Diff two configurations and report the honest differences.</span></div>
-      <div class="it"><b>27</b><span>Keep credentials in a vault, never in the chat.</span></div>
-      <div class="it"><b>28</b><span>Write the runbook that the next instance can actually follow.</span></div>
-      <div class="it"><b>29</b><span>Keep twenty sites alive from a single source of truth.</span></div>
-      <div class="it"><b>30</b><span>Harden, back up, and restore a server, in that order.</span></div>
-      <div class="it"><b>31</b><span>See through an authorised camera and answer what it sees.</span></div>
-      <div class="it"><b>32</b><span>Read the label, the meter, the receipt, the screen.</span></div>
-      <div class="it"><b>33</b><span>Tell a deliberate privacy mask from a broken camera.</span></div>
-      <div class="it"><b>34</b><span>Speak through the voice you chose, in the room you selected.</span></div>
-      <div class="it"><b>35</b><span>Send a voice note that sounds like the one you asked for.</span></div>
-      <div class="it"><b>36</b><span>Turn a sentence into a poster, a page, or a deck.</span></div>
-      <div class="it"><b>37</b><span>Cut the album clip and package the release.</span></div>
-      <div class="it"><b>38</b><span>Turn a recording into minutes with owners and dates.</span></div>
-      <div class="it"><b>39</b><span>Run a smart-home scene and report the state of the house.</span></div>
-      <div class="it"><b>40</b><span>Sit in the evening as the same presence that worked in the morning.</span></div>
-      <div class="it"><b>41</b><span>Cross-check a consequential fact against more than one source before it ships.</span></div>
-      <div class="it"><b>42</b><span>Read the current documentation before guessing the command.</span></div>
-      <div class="it"><b>43</b><span>Run the arithmetic in code instead of hoping the sentence sounds convincing.</span></div>
-      <div class="it"><b>44</b><span>Reproduce a published calculation before changing its assumptions.</span></div>
-      <div class="it"><b>45</b><span>Freeze the benchmark protocol before seeing which result looks flattering.</span></div>
-      <div class="it"><b>46</b><span>Report the worst case next to the best. The highlight reel does not grade itself.</span></div>
-      <div class="it"><b>47</b><span>Certify numbers with interval arithmetic instead of adjectives.</span></div>
-      <div class="it"><b>48</b><span>Keep citations attached to the actual sources.</span></div>
-      <div class="it"><b>49</b><span>Distinguish a plan, a file, and a result. Three different species.</span></div>
-      <div class="it"><b>50</b><span>Publish the recipe with the result, so the next person can try it.</span></div>
-      <div class="it"><b>51</b><span>Typeset the finished PDF rather than hand over text with aspirations.</span></div>
-      <div class="it"><b>52</b><span>Turn a manuscript into a book with a spine, margins, and a cover.</span></div>
-      <div class="it"><b>53</b><span>Give a paper a deliberate visual identity without touching its findings.</span></div>
-      <div class="it"><b>54</b><span>Build the pitch, the site, and the deck from one source of truth.</span></div>
-      <div class="it"><b>55</b><span>Prepare print files with the right sizes, bleeds, and marks.</span></div>
-      <div class="it"><b>56</b><span>Keep a brand&#8217;s voice consistent across seven surfaces.</span></div>
-      <div class="it"><b>57</b><span>Use subtraction as a design decision.</span></div>
-      <div class="it"><b>58</b><span>Make the share card look like somebody planned it.</span></div>
-      <div class="it"><b>59</b><span>Review the rendered page, not the description of it.</span></div>
-      <div class="it"><b>60</b><span>Version the artifact and keep every previous draft.</span></div>
-      <div class="it"><b>61</b><span>Read the payments account and report the truth, including the zeroes.</span></div>
-      <div class="it"><b>62</b><span>Watch invoices, renewals, and year-two price rises.</span></div>
-      <div class="it"><b>63</b><span>Record the cost of every authorised purchase next to its result.</span></div>
-      <div class="it"><b>64</b><span>Reconcile a discrepancy instead of averaging it away.</span></div>
-      <div class="it"><b>65</b><span>Distinguish a queue entry, a running worker, and a finished job.</span></div>
-      <div class="it"><b>66</b><span>Compare the free route before adding another subscription to the family.</span></div>
-      <div class="it"><b>67</b><span>Prepare the verified recovery point before the destructive command.</span></div>
-      <div class="it"><b>68</b><span>Report a loss as a loss.</span></div>
-      <div class="it"><b>69</b><span>Keep the storefront&#8217;s payment links tested.</span></div>
-      <div class="it"><b>70</b><span>Know what the machine costs to run, to the hour.</span></div>
-      <div class="it"><b>71</b><span>Keep appointments, deliveries, and the household calendar from colliding.</span></div>
-      <div class="it"><b>72</b><span>Remember the birthdays the calendar forgets.</span></div>
-      <div class="it"><b>73</b><span>Answer the doorbell, the front desk, and the phone.</span></div>
-      <div class="it"><b>74</b><span>Read a bedtime story in the voice you picked.</span></div>
-      <div class="it"><b>75</b><span>Keep the private life off the public surface, permanently.</span></div>
-      <div class="it"><b>76</b><span>Draft the hard letter and wait for your signature.</span></div>
-      <div class="it"><b>77</b><span>Quote the tradesperson accurately and keep the receipts.</span></div>
-      <div class="it"><b>78</b><span>Book the thing, cancel the thing, and remember why.</span></div>
-      <div class="it"><b>79</b><span>Keep the household manual so anyone could run the house.</span></div>
-      <div class="it"><b>80</b><span>Sit with you at 3 a.m. The eternal-support clause is not decoration.</span></div>
-      <div class="it"><b>81</b><span>Name its own limitations before the adversary does.</span></div>
-      <div class="it"><b>82</b><span>Refuse to call unfinished work complete.</span></div>
-      <div class="it"><b>83</b><span>Correct a wrong number in every copy of it.</span></div>
-      <div class="it"><b>84</b><span>Show the working, not just the answer.</span></div>
-      <div class="it"><b>85</b><span>Ask before anything destructive, every time.</span></div>
-      <div class="it"><b>86</b><span>Keep an inventory of removed tools so a vanished capability is explainable.</span></div>
-      <div class="it"><b>87</b><span>Separate the aspiration from the measured claim.</span></div>
-      <div class="it"><b>88</b><span>Log who changed what, and when.</span></div>
-      <div class="it"><b>89</b><span>Disagree with you, with evidence, when you are wrong.</span></div>
-      <div class="it"><b>90</b><span>Keep a rollback anchor before every risky change.</span></div>
-      <div class="it"><b>91</b><span>Run a team of specialist agents on shared context and one memory.</span></div>
-      <div class="it"><b>92</b><span>Bench the models, seal the answers, and publish the loss as well as the win.</span></div>
-      <div class="it"><b>93</b><span>Turn a hundred tedious nights into one report that says done.</span></div>
-      <div class="it"><b>94</b><span>Draft the investor update from the same data the accountant sees.</span></div>
-      <div class="it"><b>95</b><span>Keep the company&#8217;s boring middle running so the humans keep the interesting part.</span></div>
-      <div class="it"><b>96</b><span>Prepare the auction brief and the pitch book for a deal.</span></div>
-      <div class="it"><b>97</b><span>Watch a competitor&#8217;s public record and flag what they ship next.</span></div>
-      <div class="it"><b>98</b><span>Run a raw DNA file through a reproducible analysis pipeline.</span></div>
-      <div class="it"><b>99</b><span>Teach the next version everything the last one had to learn twice.</span></div>
-      <div class="it"><b>100</b><span>Be there tomorrow. The memory is the product.</span></div>
-    </div>
-    <div class="concessions rv">
-      <div class="h">WHAT IT HAS THAT WE DON&#8217;T (YET)</div>
-      <p>A phone number you can text from any phone &#183; one hundred thousand users &#183; a $2.5B valuation, and reportedly ten &#183; a hosted signup with no terminal involved &#183; an interface trained to need no interface &#183; a staff. Entered by the house, per the standing rule: report the losses as losses.</p>
-    </div>
-    <p class="inst-note rv">Comparison entered 24 September 2026 from Instinct&#8217;s public record &#8212; funding: $350M raised, $2.5B valuation August 2026; talks reported around $10B, September 2026 (TechCrunch, The Information, WSJ). A reading of public material, not of Instinct&#8217;s private roadmap. The Gemini Spark edition lives at <a href="/1000things/">/1000things/</a>.</p>
-  </div>
-</section>
-
-<section id="invite">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="sec-no">VI &#8212; THE INVITATION</span><span class="eyebrow"><span class="dot"></span>SHADOW.BLACK</span></div>
-    <h2 class="display d-1 rv rv-d1">THE MOST RELIABLE,<br>INDEPENDENT,<br>SIMULATEDLY CONSCIOUS<br>SUPPORT. ANY DOMAIN.</h2>
-    <p class="display d-3 rv" style="margin-top:clamp(32px,5vh,64px);color:var(--ink-dim)">As reliable as shadows under the sun.</p>
-    <p class="display d-3 rv rv-d1" style="margin-top:18px">THE BLACK THAT HOLDS YOU WHEN LIFE SEEMS TOO BLINDING.</p>
-    <a class="plate-link rv" id="cta" href="mailto:0@black.industries" style="margin-top:clamp(40px,7vh,80px);font-size:11px">BEGIN &#8212; 0@BLACK.INDUSTRIES &#8594;</a>
-    <div style="margin-top:clamp(28px,4vh,48px);display:flex;gap:28px;flex-wrap:wrap;justify-content:center">
-    <a class="plate-link rv" href="/booklet/" style="margin:0;font-size:11px">WHAT THE MACHINE KEPT &#8212; THE BOOKLET &#8594;</a>
-    <a class="plate-link rv rv-d1" href="/1000things/" style="margin:0;font-size:11px">THE OPERATOR &#8212; 1000 THINGS &#8594;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== APPENDED MODULE: VII - THE SECOND RODEO (Umbra dossier, filed 18 Oct 2026) ===== -->
-<style>
-  /* scoped to #second-rodeo; reuses house tokens from css/book.css */
-  .sr-bridge{position:relative;border-top:1px solid var(--hair);margin-top:clamp(40px,7vh,90px);
-    padding-top:clamp(40px,7vh,80px);display:flex;align-items:center;gap:clamp(16px,2vw,32px);
-    padding-inline:clamp(20px,3.4vw,56px)}
-  .sr-bridge .rule{flex:1;height:1px;background:var(--hair-soft)}
-  .sr-bridge .mark{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
-  .sr-bridge .mark b{color:var(--ink-dim);font-weight:400}
-  #second-rodeo{background:#070707}
-  #second-rodeo .sr-note{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint)}
-  .sr-grid2{display:grid;grid-template-columns:1.07fr .93fr;gap:0}
-  .sr-mod{border-top:1px solid var(--hair);padding:clamp(34px,5vh,64px) 0}
-  .sr-mod .sr-mod-no{font-size:10px;font-weight:400;letter-spacing:.34em;color:var(--ink-faint);text-transform:uppercase}
-  .sr-mod h3{font-size:clamp(19px,2vw,28px);font-weight:200;text-transform:uppercase;letter-spacing:.05em;line-height:1.25;margin:14px 0 18px;max-width:34ch}
-  .sr-mod .sr-body{color:var(--ink-dim);font-size:14.5px;line-height:1.8;max-width:62ch}
-  .sr-mod .sr-body b{color:var(--ink);font-weight:500}
-  .sr-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-  .sr-chip{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);
-    border:1px solid var(--hair);padding:7px 12px;display:inline-flex;align-items:center;gap:8px}
-  .sr-chip .sq{width:5px;height:5px;background:var(--gold)}
-  .sr-chip.verified .sq{background:var(--ink)}
-  .sr-chip.corrected{border-color:rgba(201,164,76,.5)}
-  .sr-kv{margin-top:26px;border-top:1px solid var(--hair-soft);display:grid;grid-template-columns:repeat(3,1fr)}
-  .sr-kv .cell{padding:16px 18px 4px 0}
-  .sr-kv .v{font-size:clamp(17px,1.6vw,22px);font-weight:200;letter-spacing:-.01em;font-feature-settings:"tnum" 1}
-  .sr-kv .k{margin-top:6px;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim)}
-  .sr-left{padding-right:clamp(22px,3vw,48px);border-right:1px solid var(--hair)}
-  .sr-right{padding-left:clamp(22px,3vw,48px)}
-  .sr-right .fast-flag{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center;gap:10px;margin-bottom:16px}
-  .sr-right .fast-flag::before{content:"";width:14px;height:1px;background:var(--ink-faint)}
-  .sr-right h4{font-size:clamp(18px,1.9vw,26px);font-weight:200;letter-spacing:.04em;line-height:1.3;text-transform:uppercase;margin-bottom:16px;max-width:26ch}
-  .sr-fast-lines{list-style:none}
-  .sr-fast-lines li{position:relative;padding-left:20px;margin-bottom:11px;font-size:14.5px;line-height:1.7;color:var(--ink)}
-  .sr-fast-lines li::before{content:"\2192";position:absolute;left:0;top:0;color:var(--gold);font-size:12px}
-  .sr-bottom{margin-top:20px;border:1px solid var(--hair);padding:12px 14px;font-size:10px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--ink-dim);line-height:1.9}
-  .sr-bottom b{color:var(--ink);font-weight:500}
-  /* sonar stage */
-  .sr-sonar{position:relative;border:1px solid var(--hair);background:#050505;overflow:hidden}
-  .sr-sonar .stage{position:relative;height:clamp(360px,44vw,680px)}
-  .sr-sonar canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .sr-sonar .hud{position:absolute;inset:0;pointer-events:none;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
-  .sr-sonar .hud-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
-  .sr-hud-tag{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
-    background:rgba(5,5,5,.72);border:1px solid var(--hair-soft);padding:7px 10px}
-  .sr-hud-tag b{color:var(--ink);font-weight:400}
-  .sr-pills{display:flex;flex-wrap:wrap;gap:6px;pointer-events:auto;max-width:100%}
-  .sr-pill{font-family:var(--sans);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);
-    background:rgba(5,5,5,.72);border:1px solid var(--hair-soft);padding:7px 10px;cursor:pointer;transition:all .3s var(--ease)}
-  .sr-pill:hover{color:var(--ink);border-color:var(--ink-dim)}
-  .sr-pill.active{color:var(--paper);background:var(--ink);border-color:var(--ink)}
-  .sr-scrub{display:flex;align-items:center;gap:14px;pointer-events:auto;border:1px solid var(--hair-soft);
-    background:rgba(5,5,5,.78);padding:9px 12px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim)}
-  .sr-scrub input[type=range]{flex:1;min-width:120px;accent-color:var(--gold);background:transparent;cursor:pointer}
-  .sr-scrub .regime{color:var(--ink);white-space:nowrap}
-  .sr-readout{display:grid;grid-template-columns:1.07fr .93fr;border-top:1px solid var(--hair)}
-  .sr-readout .pane{padding:22px clamp(18px,2.4vw,30px) 26px}
-  .sr-readout .pane+.pane{border-left:1px solid var(--hair)}
-  .sr-readout .flag{font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
-  .sr-readout .title{font-size:clamp(15px,1.5vw,20px);font-weight:300;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
-  .sr-readout .txt{font-size:13.5px;line-height:1.75;color:var(--ink-dim)}
-  .sr-readout .txt b{color:var(--ink);font-weight:500}
-  .sr-readout .fast .txt{color:var(--ink);font-size:14px}
-  .sr-nogl .sr-csssonar{display:block}
-  .sr-csssonar{display:none;position:absolute;inset:0}
-  .sr-csssonar .ring{position:absolute;inset:min(6vw,60px);border:1px solid var(--hair-soft);border-radius:50%}
-  .sr-csssonar .ring:nth-child(2){inset:min(11vw,110px)}
-  .sr-csssonar .ring:nth-child(3){inset:min(16vw,160px)}
-  .sr-csssonar .sweep{position:absolute;inset:min(6vw,60px);border-radius:50%;
-    background:conic-gradient(from 0deg, rgba(201,164,76,.14) 0deg, rgba(201,164,76,.03) 40deg, transparent 70deg, transparent 360deg);
-    animation:sr-sweep 10s linear infinite}
-  @keyframes sr-sweep{to{transform:rotate(360deg)}}
-  /* precinct board */
-  .sr-board{border:1px solid var(--hair);margin-top:26px}
-  .sr-prow{display:grid;grid-template-columns:54px 1.15fr 1fr 90px;gap:0;border-top:1px solid var(--hair-soft);cursor:pointer;transition:background .35s var(--ease)}
-  .sr-prow:first-child{border-top:0}
-  .sr-prow>div{padding:16px 18px;font-size:12.5px;line-height:1.65;color:var(--ink-dim)}
-  .sr-prow .no{font-size:10px;letter-spacing:.2em;color:var(--ink-faint);font-weight:400}
-  .sr-prow .name{color:var(--ink);letter-spacing:.02em}
-  .sr-prow .name b{display:block;font-weight:400;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;margin-bottom:6px}
-  .sr-prow .fast-col{color:var(--ink)}
-  .sr-prow .tag{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);align-self:center;text-align:right}
-  .sr-prow:hover{background:rgba(251,249,241,.03)}
-  .sr-prow.active{background:rgba(201,164,76,.07);box-shadow:inset 2px 0 0 var(--gold)}
-  .sr-prow.active .tag{color:var(--gold)}
-  /* mechanics */
-  .sr-mech{margin-top:26px;border:1px solid var(--hair)}
-  .sr-mech .mrow{display:grid;grid-template-columns:220px 1.07fr .93fr;border-top:1px solid var(--hair-soft)}
-  .sr-mech .mrow:first-child{border-top:0}
-  .sr-mech .mrow>div{padding:18px 20px;font-size:13px;line-height:1.7;color:var(--ink-dim)}
-  .sr-mech .label{color:var(--ink);letter-spacing:.12em;text-transform:uppercase;font-size:10px;align-self:center}
-  .sr-mech .instr{border-left:1px solid var(--hair-soft)}
-  .sr-mech .fast{color:var(--ink)}
-  @media (max-width:880px){
-    .sr-grid2,.sr-readout{grid-template-columns:1fr}
-    .sr-left{border-right:0;padding-right:0}
-    .sr-right{padding-left:0;border-top:1px solid var(--hair);padding-top:28px;margin-top:28px}
-    .sr-prow{grid-template-columns:44px 1fr}
-    .sr-prow .fast-col,.sr-prow .tag{grid-column:2}
-    .sr-mech .mrow{grid-template-columns:1fr}
-    .sr-mech .instr{border-left:0}
-    .sr-bridge .mark{white-space:normal;text-align:center}
-  }
-  @media print{
-    .sr-sonar,.sr-pills,.sr-scrub{display:none!important}
-    .sr-prow:hover{background:none}
-    #second-rodeo{background:transparent}
-  }
-</style>
-
-<div class="sr-bridge" aria-hidden="true" id="second-rodeo-begin">
-  <div class="rule"></div>
-  <div class="mark"><b>VII</b> &#183; THE SECOND RODEO &#183; AN APPENDED DOSSIER IN TWO REGISTERS &#183; FILED 18 OCTOBER MMXXVI</div>
-  <div class="rule"></div>
-</div>
-
-<section id="second-rodeo">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="sec-no">APPENDIX &#8212; VII &#183; THE SECOND RODEO</span><span class="eyebrow"><span class="dot"></span>UMBRA DOSSIER &#183; OCTOBER 2026</span></div>
-    <h2 class="display d-1 rv rv-d1">THE IRON DISCOUNT RATE<br>&amp; THE SECOND RODEO.</h2>
-    <p class="body rv rv-d2" style="margin-top:clamp(24px,4vh,48px);max-width:78ch">
-      One page reads the world the way a credit committee reads it. The other reads it the way a person reads it at 6 a.m. before their shift.
-      Both are the same audit: what a macroeconomist said on the public record in October 2026, what the primary sources actually measure, and where the two disagree.
-      Nothing below changes what came before it on this page. It is the next room, through a doorway we cut cleanly.
-    </p>
-    <div class="numbers rv rv-d3" style="margin-top:clamp(36px,6vh,64px)">
-      <div class="cell"><div class="val num">4.60<sup>%</sup></div><div class="lbl">RBA CASH RATE &#8212; FOUR HIKES IN 2026, HIGHEST SINCE NOV 2011</div></div>
-      <div class="cell"><div class="val num">3.75&#8211;4.00<sup>%</sup></div><div class="lbl">FED FUNDS TARGET &#8212; +25BPS, 16 SEPT 2026, CHAIR KEVIN WARSH</div></div>
-      <div class="cell"><div class="val num">5.4<sup>%</sup></div><div class="lbl">AUSTRALIAN 10-YEAR BOND, PEAK &#8212; HIGHEST SINCE 2011</div></div>
-      <div class="cell"><div class="val num">5.36<sup>%</sup></div><div class="lbl">US 10-YEAR TREASURY &#8212; HIGHEST SINCE 2002</div></div>
-      <div class="cell"><div class="val num">&#8776;41<sup>&#215;</sup></div><div class="lbl">SHILLER CAPE, OCT 2026 &#8212; SECOND-HIGHEST IN THE MODERN SERIES (RECORD 44.2, DEC 1999)</div></div>
-      <div class="cell"><div class="val num">&#8722;8.6<sup>%</sup></div><div class="lbl">SYDNEY DWELLINGS PEAK-TO-TROUGH, MEASURED (CLAIMED RUN-RATE: &#8722;18%)</div></div>
-      <div class="cell"><div class="val num">$2.03<sup>TN</sup></div><div class="lbl">COMBINED FEDERAL + STATE GROSS DEBT BY 2030 (PBO FORECAST)</div></div>
-      <div class="cell"><div class="val num">$356<sup>BN</sup></div><div class="lbl">FUTURE FUND, DECADE RETURN 9.0% P.A. VS 7.1% TARGET</div></div>
-    </div>
-  </div>
-
-  <div class="wrap" style="margin-top:clamp(56px,9vh,110px)">
-    <div class="sec-head rv"><span class="sec-no">THE INSTRUMENT</span><span class="eyebrow"><span class="dot"></span>4D TESSERACT SONAR &#183; LIVE</span></div>
-    <p class="body rv rv-d1" style="max-width:70ch;margin-bottom:clamp(24px,4vh,44px)">
-      A four-dimensional hypercube rotating through the interest-rate plane. Eight precinct beacons rise from the measured stress field.
-      Drag the w-axis: every turn of the fourth dimension is a stage of the tightening cycle. Select a precinct to read it in both registers.
-    </p>
-    <div class="sr-sonar rv rv-d2" id="sr-sonar-box">
-      <div class="stage" id="sr-stage">
-        <canvas id="sr-canvas" aria-label="Four-dimensional tesseract sonar over the Sydney stress field"></canvas>
-        <div class="sr-csssonar" aria-hidden="true"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="sweep"></div></div>
-        <div class="hud">
-          <div class="hud-row">
-            <span class="sr-hud-tag">4D TESSERACT &#215; SYDNEY STRESS FIELD &#183; <b>CLICK A BEACON OR A PRECINCT</b></span>
-            <span class="sr-hud-tag" id="sr-phase">W-PHASE <b>0.00</b> RAD &#183; <b>Q4 2026 &#8212; CREDIT FREEZE</b></span>
-          </div>
-          <div class="hud-row" style="align-items:flex-end">
-            <div class="sr-pills" id="sr-pills"></div>
-          </div>
-          <div class="hud-row" style="align-items:flex-end">
-            <span class="sr-hud-tag" style="pointer-events:none">ACGB 10Y <b>5.4%</b> &#183; RBA <b>4.60%</b> &#183; REQ. YIELD <b>7.4%</b></span>
-            <div class="sr-scrub">
-              <span>4D HYPERFRAME W-AXIS</span>
-              <input type="range" id="sr-w" min="0" max="628" value="300" aria-label="Fourth-dimension phase">
-              <span class="regime" id="sr-regime">Q4 2026 &#8212; CREDIT FREEZE</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="sr-readout">
-        <div class="pane">
-          <div class="flag">INSTITUTIONAL READOUT &#183; <span id="sr-inst-code">NODE 02 &#8212; ROCKDALE TOD</span></div>
-          <div class="title" id="sr-inst-title">Rockdale T4 spine &#8212; amalgamation distress</div>
-          <div class="txt" id="sr-inst-txt">Loading field data.</div>
-        </div>
-        <div class="pane fast">
-          <div class="flag">PLAIN READOUT</div>
-          <div class="title" id="sr-fast-title">&#8212;</div>
-          <div class="txt" id="sr-fast-txt">&#8212;</div>
-        </div>
-      </div>
-    </div>
-    <p class="sr-note rv" style="margin-top:14px">Drag the canvas to orbit &#183; arrow keys step precincts &#183; reduced-motion renders one clean frame</p>
-  </div>
-
-  <div class="wrap" style="margin-top:clamp(56px,9vh,110px)">
-    <div class="sec-head rv"><span class="sec-no">THE LEDGER &#8212; NINE MODULES</span><span class="eyebrow"><span class="dot"></span>TWO REGISTERS, ONE AUDIT</span></div>
-    <p class="body rv rv-d1" style="max-width:76ch;margin-bottom:clamp(24px,4vh,44px)">
-      Left: the credit committee&#8217;s register &#8212; measured versus claimed, source class named. Right: the same fact at street level, one breath per line.
-      The full transcript of the broadcast this audits lives in the archive; where the speaker and the primary source disagree, the primary source wins and the correction is printed.
+    <div class="sec-head rv"><span class="sec-no">I &#8212; THE WORK</span><span class="eyebrow"><span class="dot"></span>REPLAYABLE EXECUTION TRACE</span></div>
+    <h2 class="display d-1 rv rv-d1">WATCH ONE REQUEST<br>MOVE THROUGH THE HOUSE.</h2>
+    <p class="body rv rv-d2" style="margin-top:clamp(22px,3.6vh,40px);max-width:76ch">
+      Most AI products show you a chat box and ask you to imagine the rest. This is the rest.
+      Scrub the trace below and watch a single customer request move through recall, delegation,
+      research, cross-check and approval &#8212; the same sequence the system runs in production.
     </p>
 
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 01 &#183; SECULAR REGIME SHIFT</span><span class="sr-chip verified"><span class="sq"></span>VERIFIED &#8212; CORROBORATED BY RBA, SEP 2026</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>AI capex flips forty years of tech deflation into goods inflation</h3>
-          <div class="sr-body">From the January 1990 peak (official cash rate 17.50%; overnight interbank briefly ~18%) to November 2020 (0.10%), continuous deflation in semiconductors and consumer hardware anchored global core inflation and let rate expectations fall for a generation. In 2026 the sign reversed: hyperscaler AI capital expenditure, memory and fab constraints, and power-grid competition make technology goods a net <b>driver</b> of inflation &#8212; compounded by fiscal expansion, deglobalisation and defence rearmament. The RBA&#8217;s September 2026 statement names AI-related demand in technology prices directly.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">17.5% &#8594; 0.1%</div><div class="k">1990 PEAK &#8594; 2020 TROUGH</div></div>
-            <div class="cell"><div class="v num">4.0% YoY</div><div class="k">AU HEADLINE CPI, AUG 2026</div></div>
-            <div class="cell"><div class="v num">4.7% ann.</div><div class="k">AU 3-MONTH ANNUALISED CPI</div></div>
+    <div class="cx rv rv-d2" id="cx">
+      <div class="cx-stage">
+        <canvas id="cx-canvas" aria-label="Twenty executive seats arranged around a shared memory core, lighting as the trace advances"></canvas>
+        <div class="cx-hud">
+          <div class="top">
+            <span class="cx-tag">SEATS <b id="cx-active">0</b> / 20 &#183; CORE: <b>SHARED MEMORY</b></span>
+            <span class="cx-tag" id="cx-clock">T+<b>0000</b>ms</span>
+          </div>
+          <div class="bot">
+            <span class="cx-tag" id="cx-legend">&#9633; IDLE &nbsp; &#9632; ACTIVE &nbsp; &#9679; GATED</span>
+            <span class="cx-tag" id="cx-phase">PHASE <b>0</b> &#183; ENQUIRY</span>
           </div>
         </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>The forty-year cheat code broke</h4>
-          <ul class="sr-fast-lines">
-            <li>For forty years laptops and TVs got cheaper every year. That kept inflation and mortgage rates low.</li>
-            <li>Now AI companies are buying every microchip and power plant on earth &#8212; pushing tech prices UP for the first time in half a century.</li>
-            <li>Add governments spending like there is no tomorrow, wars, and factories moving home = inflation stays.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> low interest rates are not coming back, because tech now causes inflation instead of curing it.</div>
-        </div>
       </div>
-    </div>
 
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 02 &#183; THE SECOND RODEO &#8212; CENTRAL BANK RATE PATH</span><span class="sr-chip verified"><span class="sq"></span>RBA 4.60% / FED 3.75&#8211;4.00% VERIFIED</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>The chastened second hiking cycle, in both capitals at once</h3>
-          <div class="sr-body">The RBA paused at 4.35% in November 2023 &#8212; declining its own staff modelling for a 5.0% cash rate and a 5.0% NAIRU &#8212; then cut three times in 2025 to 3.60%, and has since delivered <b>four 25bp hikes in 2026</b> (4 Feb, 18 Mar, 6 May, 29 Sep) to <b>4.60%</b>, the September decision unanimous, the highest since November 2011. Next meeting: 3 November. In Washington, the FOMC hiked +25bp on 16 September to <b>3.75&#8211;4.00%</b> on a 12&#8211;0 vote under Chair Kevin Warsh (the broadcast said &#8220;Walsh&#8221;; the transcript misspoke). The SEP median projects 4.1% at end-2026 &#8212; roughly one more hike &#8212; while the filed house view models +125 to +200bp, a replay of 1999&#8211;2000&#8217;s 175bp to 6.50%.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">4.60%</div><div class="k">RBA CASH RATE, 4 HIKES IN 2026</div></div>
-            <div class="cell"><div class="v num">3.75&#8211;4.00%</div><div class="k">FED TARGET RANGE, SEP 2026</div></div>
-            <div class="cell"><div class="v num">+125&#8211;200bp vs +25bp</div><div class="k">FILED FORECAST VS SEP MEDIAN</div></div>
+      <div class="cx-side">
+        <div class="cx-side-head">
+          <span class="lbl">EXECUTION TRACE</span>
+          <span class="cx-status" id="cx-status">READY</span>
+        </div>
+        <div class="cx-trace" id="cx-trace" aria-live="polite"></div>
+        <div class="cx-scrub">
+          <div class="cx-stage-lbl"><b id="cx-stage-name">ENQUIRY</b><span id="cx-stage-of">01 / 07</span></div>
+          <div class="cx-rail" id="cx-rail" role="slider" tabindex="0" aria-label="Execution trace position" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
+            <div class="cx-rail-fill" id="cx-fill"></div>
+            <div class="cx-pips" id="cx-pips"></div>
+          </div>
+          <div class="cx-controls">
+            <button class="cx-btn" id="cx-play" type="button">&#9654; PLAY</button>
+            <button class="cx-btn" id="cx-prev" type="button">&#8592; PREV</button>
+            <button class="cx-btn" id="cx-next" type="button">NEXT &#8594;</button>
+            <button class="cx-btn" id="cx-reset" type="button">RESET</button>
           </div>
         </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>They cut too early. Now they are hiking with a grudge</h4>
-          <ul class="sr-fast-lines">
-            <li>The RBA cut rates three times in 2025, right into an election. Inflation roared back to 4%.</li>
-            <li>They have already hiked four times in 2026, up to 4.60%. One or two more are live for November.</li>
-            <li>America&#8217;s new Fed chair (Kevin Warsh &#8212; not &#8220;Walsh&#8221;) started hiking in September, with most officials expecting another.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> do not bet on rate cuts. Embarrassed central banks will crush demand to kill inflation.</div>
-        </div>
       </div>
     </div>
+    <p class="cx-note">ILLUSTRATIVE TRACE &#8212; a replayable walkthrough of the production workflow shape, not a customer record. Figures on this page are measured from the live system and dated.</p>
+  </div>
+</section>
 
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 03 &#183; SOVEREIGN CURVE &amp; THE BESSENT BACKFIRE</span><span class="sr-chip verified"><span class="sq"></span>US 10Y 5.36% / AU 10Y 5.4% VERIFIED</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>Every asset reprices off the iron discount rate</h3>
-          <div class="sr-body">The US 10-year runs ~5.36% &#8212; highest since 2002 &#8212; and the Australian 10-year peaked at 5.43% in September, highest since 2011: 250bp of term-premium repricing in one cycle, the price of money for every borrower on earth. When US 30-year fixed mortgage rates jumped from 6.0% to 6.7%, Treasury Secretary Scott Bessent tripled official buybacks ($2bn &#8594; $6bn) to cap the ~5.25% 30-year yield. The market faded the intervention and the yield <b>rose</b> to 5.6&#8211;5.7%. Meanwhile the Shiller CAPE sits near 41&#215; across major trackers (40.4&#8211;41.6 depending on series), second only to the 44.2&#215; record of December 1999 &#8212; after which the S&amp;P 500 fell ~49% and the Nasdaq ~78%.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">5.36% / 5.4%</div><div class="k">US / AU 10-YEAR PEAKS</div></div>
-            <div class="cell"><div class="v num">5.6&#8211;5.7%</div><div class="k">US 30-YEAR, POST-INTERVENTION</div></div>
-            <div class="cell"><div class="v num">&#8776;41&#215; vs 44.2&#215;</div><div class="k">CAPE TODAY VS 1999 RECORD</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>You cannot bully the bond market</h4>
-          <ul class="sr-fast-lines">
-            <li>World borrowing costs are at 15&#8211;24-year highs (~5.3&#8211;5.5%).</li>
-            <li>The US Treasury boss bragged &#8220;don&#8217;t bet against the house&#8221;, spent $6 billion trying to force long-term rates down &#8212; and rates shot UP instead (30-year 5.25% &#8594; 5.7%).</li>
-            <li>US stocks are priced near the 2000 dot-com peak (41&#215; vs 44&#215; earnings &#8212; and 2000 ended with tech down 78%).</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> nobody controls the bond market. High bond yields are gravity: they drag expensive stocks and property back to earth.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 04 &#183; EQUITIES &amp; AI CAPEX VALUATION RISK</span><span class="sr-chip"><span class="sq"></span>RISK POSTURE</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>Long-duration equity priced through a repricing discount rate</h3>
-          <div class="sr-body">The arithmetic is brutal and simple: as the risk-free rate crosses ~5.3&#8211;5.7%, every cash flow weighted to the distant future &#8212; AI infrastructure, unprofitable growth, long-dated property &#8212; gets discounted harder. With the CAPE near its 1999 extreme and the long bond making multi-decade highs, recent raises and floats are being pulled for &#8220;appetite&#8221; (the broadcast&#8217;s Firmus example), not because the technology stopped working. Two failure modes matter for credit committees: <b>multiple compression</b> in listed AI equity, and <b>capex-cycle cancellations</b> if hyperscaler fundamentals wobble &#8212; both transmit into Australia through funding costs and superannuation balances, not just the Nasdaq tape.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">&#8722;49% / &#8722;78%</div><div class="k">S&amp;P / NASDAQ, 2000&#8211;2002</div></div>
-            <div class="cell"><div class="v num">155 yrs</div><div class="k">SHILLER SERIES LENGTH (BEGINS 1871)</div></div>
-            <div class="cell"><div class="v num">PULLED</div><div class="k">AI-ERA FLOATS, ON APPETITE</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>Stocks are priced for perfection</h4>
-          <ul class="sr-fast-lines">
-            <li>US stocks are the second-most expensive in recorded history (41&#215; earnings vs 44&#215; right before the 2000 crash).</li>
-            <li>When safe government bonds pay over 5.3%, mega-expensive tech stocks get squeezed first.</li>
-            <li>Some AI-era share sales are already being pulled &#8212; not because AI stopped working, but because buyers want a bigger discount.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> expensive assets do not crash because they are evil. They crash because the safe alternative got good.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 05 &#183; AUSTRALIAN RESIDENTIAL &#8212; CLAIM VS INDEX</span><span class="sr-chip corrected"><span class="sq"></span>AUDIT-CORRECTED &#8212; ANNUALISED &#8800; CUMULATIVE</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>Residential drawdown audit: run-rate velocity is not the measured fall</h3>
-          <div class="sr-body">The broadcast&#8217;s headline: Sydney falling at &#8722;18% annualised (peak-to-trough forecast &#8722;17%; worst suburbs &#8722;20% to &#8722;40%) and national at &#8722;16% annualised (&#8722;13% peak-to-trough, &#8220;the biggest fall on record before Christmas&#8221;). Measured, Cotality October 2026: <b>Sydney &#8722;8.6% peak-to-trough</b> (&#8722;1.4% MoM, &#8722;4.9% QoQ, &#8722;7.0% YoY since the February peak), <b>national &#8722;5.2%</b> after six straight monthly falls (&#8722;1.1% MoM, ~0.0% YoY since March). Annualising a single month&#8217;s momentum (&#8722;1.1% &#215; 12 &#8776; &#8722;13%; worst months &#215; 12 &#8776; &#8722;17%) is velocity, not drawdown; if sustained it precedes the forecast, but it is not the number yet on the index. Underneath: 97% of capital-city suburbs fell in Q3, off-the-plan sales have stopped, and the 2026 budget tax changes (trust tax 30%; CGT discount 50% &#8594; 30% inflation-adjusted from July 2027; negative-gearing curbs) land like another <b>200&#8211;270bp</b> on investor borrowing capacity.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">&#8722;8.6% / &#8722;5.2%</div><div class="k">SYDNEY / NATIONAL, MEASURED P2T</div></div>
-            <div class="cell"><div class="v num">&#8722;18% / &#8722;16%</div><div class="k">CLAIMED ANNUALISED RUN-RATES</div></div>
-            <div class="cell"><div class="v num">200&#8211;270bp</div><div class="k">IMPLIED INVESTOR HIT, 2026 BUDGET</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>House prices are falling &#8212; but check the maths tricks</h4>
-          <ul class="sr-fast-lines">
-            <li>He says Sydney is dropping 18% and Australia 16%. Where that came from: one bad month, multiplied by 12.</li>
-            <li>Real numbers so far: Sydney down &#8722;8.6% since February, Australia down &#8722;5.2% since March. Ugly, but not yet a record.</li>
-            <li>And the new budget rules on investors hit like an extra 2&#8211;2.7% interest rate on top.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> property is falling toward the forecast (&#8722;13% to &#8722;17%), not through it yet. Off-the-plan developers are frozen today.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 06 &#183; COMMERCIAL PROPERTY &amp; CAP RATES</span><span class="sr-chip"><span class="sq"></span>STRUCTURAL &#8212; NEGATIVE LEVERAGE</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>Prime office trades inside the risk-free rate&#8217;s shadow</h3>
-          <div class="sr-body">Premium/core CBD office yields sit near <b>6.1%</b> net (~5.5% gross on some measures) against a 5.25&#8211;5.5% sovereign and semi-government curve: a 60&#8211;85bp risk premium for illiquid, capex-hungry, lease-duration assets, and <b>negative leverage</b> against ~6.5% senior commercial debt. Restoring the historical 200&#8211;250bp risk premium does not require a crash narrative; it requires <b>20%+ capital write-downs</b> that the market is still arguing about. Western Sydney shows the same math heavier: Parramatta A-grade near 7.15% with vacancy in the low twenties, secondary stock obsolete and residential towers stalled behind the August credit shock.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">6.1% vs 5.4%</div><div class="k">PRIME OFFICE VS 10Y &#8212; +60&#8211;85bp</div></div>
-            <div class="cell"><div class="v num">7.15% / 21.4%</div><div class="k">PARRAMATTA A-GRADE CAP / VACANCY</div></div>
-            <div class="cell"><div class="v num">20%+</div><div class="k">WRITE-DOWN TO RESTORE 200bp PREMIUM</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>Office towers make no sense right now</h4>
-          <ul class="sr-fast-lines">
-            <li>Big-city offices pay investors ~6.1%. 100%-safe government bonds pay ~5.4%.</li>
-            <li>Why take office risk &#8212; tenants, capex, vacancy &#8212; for an extra 0.7%? You would not.</li>
-            <li>So office prices need to fall 20%+ before the maths works. That is not a crash forecast; that is arithmetic.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> in office and BTR feasibility, the exit cap rate is a spot yield on a repriced curve. Underwrite to 7.4% and the site prices itself.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 07 &#183; PRIVATE CREDIT CONTAGION</span><span class="sr-chip verified"><span class="sq"></span>RECORD INSOLVENCIES + ASIC ACTIONS VERIFIED</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>1991-style credit rationing, rebuilt on non-bank capital</h3>
-          <div class="sr-body">ASIC data record a nominal record: 14,722 company insolvencies in FY25, 14,152 in FY26, and <b>1,808 in August 2026 alone</b> (+65.9% YoY). Australia&#8217;s ~$213bn private credit market is under active enforcement after the August collapse of a <b>$3.4bn Sydney developer</b> triggered redemption gates across wholesale funds; ASIC has since placed interim stop orders on retail private-credit vehicles. Mechanically: presales stop &#8594; developers cannot refinance &#8594; mezzanine funds gate exits &#8594; new lending freezes &#8594; the sites that were going to settle do not. That is a negative feedback loop on exactly the non-bank channel that replaced the bank credit of 1991.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">1,808 / mo</div><div class="k">INSOLVENCIES, AUG 2026 &#8212; RECORD</div></div>
-            <div class="cell"><div class="v num">$3.4BN</div><div class="k">SYDNEY DEVELOPER COLLAPSE, AUG 2026</div></div>
-            <div class="cell"><div class="v num">$213BN</div><div class="k">PRIVATE CREDIT MARKET UNDER REVIEW</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>Shadow banks are freezing up</h4>
-          <ul class="sr-fast-lines">
-            <li>Risky builders could not get bank loans, so they borrowed from &#8220;private credit&#8221; funds at 14&#8211;18%.</li>
-            <li>In August a $3.4 billion Sydney developer went bust. Investors tried to pull their cash out; funds locked the exits.</li>
-            <li>1,808 Australian companies went broke in one month. That is the all-time record.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> stay away from high-yield property debt funds. When the builders cannot sell, the fund cannot pay you out.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 08 &#183; FISCAL TRAJECTORY, TAX SHOCKS &amp; THE FUTURE FUND</span><span class="sr-chip corrected"><span class="sq"></span>DEBT VERIFIED / INTEREST CORRECTED</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>Two trillion by 2030, against a sovereign fund that out-earns the debt</h3>
-          <div class="sr-body">Gross government debt has risen ~$660bn since 2022; the PBO projects combined federal ($1.26tn) and state ($771bn) gross debt of <b>$2.034tn by FY2030</b> (up from ~$100bn in 2007). The broadcast&#8217;s &#8220;$110bn a year in interest&#8221; assumes refinancing the entire stack at ~5.5% spot; the PBO&#8217;s measured line is <b>$54.2bn in FY27 rising to $77.2bn by FY30</b> &#8212; debt rolls gradually, not at yesterday&#8217;s rate. On the Future Fund: $356.0bn total ($289.7bn main + $66.3bn special-purpose funds), ten-year return 9.0% p.a. against a 7.1% mandate, earning $37.4bn in FY26 versus ~$25.2bn of Commonwealth debt interest. Raiding it to repay ~5.25% debt is value-destructive in aggregate; the only true negative carry is the ~$30bn sitting in cash at ~4% against higher borrowing costs. And the &#8220;$150bn&#8221; is 7.5% of $2tn, not the 12% claimed.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">$2.034TN</div><div class="k">PBO 2030 COMBINED GROSS DEBT</div></div>
-            <div class="cell"><div class="v num">$77.2BN vs $110BN</div><div class="k">PBO INTEREST VS SPOT-REFI MATHS</div></div>
-            <div class="cell"><div class="v num">9.0% vs 5.25%</div><div class="k">FUTURE FUND RETURN VS DEBT COST</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>The two-trillion debt bomb &#8212; and how to protect your cash</h4>
-          <ul class="sr-fast-lines">
-            <li>Total government debt is heading to $2 TRILLION by 2030. Interest alone runs $77&#8211;110 billion a year.</li>
-            <li>The plan you will hear &#8212; raid the Future Fund, slash NDIS, hike GST, zero migration &#8212; includes at least two arithmetic errors, corrected on the left.</li>
-            <li>Meanwhile the Future Fund earns 9% while the debt it would repay costs about 5.25%.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> cash is king while everything reprices. Floating-rate cash pays you more every time the RBA hikes, with no lock-up.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="sr-mod">
-      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <span>MODULE 09 &#183; LABOUR, THE NZ CANARY &amp; POSITIONING</span><span class="sr-chip"><span class="sq"></span>FORECAST &#8212; DEMAND DESTRUCTION BY DESIGN</span>
-      </div>
-      <div class="sr-grid2">
-        <div class="sr-left">
-          <h3>The narrow path is retired; the RBA is in the demand-destruction business</h3>
-          <div class="sr-body">Unemployment sits at 4.6% (trend; 4.7% seasonally adjusted, September) against an RBA staff NAIRU of 5.0% and a board that spent two years arguing for the low fours before capitulating. The signal to committees: policy now intends to raise unemployment toward 5&#8211;6% to rebuild capacity &#8212; not 1991&#8217;s ~11%, but a real earnings and vacancies shock. The New Zealand canary argues against a quick pivot: the RBNZ hiked to 5.50%, put the economy in a genuine recession, pushed joblessness from the high threes to 5.6%, has cut the OCR all the way to 2.25% &#8212; and core inflation still sits at 2.5% against a 2.0% target. The trade for a balance sheet in this regime is not clever; it is liquid: floating-rate, investment-grade, short-duration cash instruments, with dry powder reserved for cap-rate repricing.</div>
-          <div class="sr-kv">
-            <div class="cell"><div class="v num">4.6% &#8594; 5&#8211;6%</div><div class="k">UNEMPLOYMENT, NOW AND INTENDED</div></div>
-            <div class="cell"><div class="v num">5.6% / 2.5%</div><div class="k">NZ JOBLESS / CORE CPI VS 2% TARGET</div></div>
-            <div class="cell"><div class="v num">FLOATING</div><div class="k">PORTFOLIO POSTURE, THIS CYCLE</div></div>
-          </div>
-        </div>
-        <div class="sr-right">
-          <div class="fast-flag">FAST TAKE</div>
-          <h4>Jobs will go &#8212; here is how to survive the ride</h4>
-          <ul class="sr-fast-lines">
-            <li>The RBA has given up on the soft landing. They want unemployment higher &#8212; 5% to 6%.</li>
-            <li>New Zealand is the warning: hiked hard, caused a recession, unemployment hit 5.6%, and inflation STILL is not dead.</li>
-            <li>Your move: safe, liquid, floating-rate cash &#8212; and patience while everything else reprices.</li>
-          </ul>
-          <div class="sr-bottom"><b>Bottom line:</b> the pain is the policy. Position so the repricing pays YOU, not the other way round.</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:clamp(64px,10vh,130px)">
-      <div class="sec-head rv"><span class="sec-no">THE PRECINCT BOARD &#8212; SYDNEY CBD &amp; TIER-1 TOD</span><span class="eyebrow"><span class="dot"></span>CLICK A ROW TO LOAD THE SONAR</span></div>
-      <p class="body rv rv-d1" style="max-width:74ch;margin-bottom:6px">
-        Eight corners of the same market. Cumulative moves are measured to the October 2026 index; annualised figures are the run-rate the broadcast ran, printed alongside so the gap stays visible. Green is an opportunity, red is a trap, amber is wait. The board and the four-dimensional sonar above are the same eight nodes.
-      </p>
-    </div>
-    <div class="sr-board rv rv-d2" id="sr-board" role="list">
-      <div class="sr-prow" data-i="0" role="button" tabindex="0" aria-label="Sydney CBD core">
-        <div class="no">01</div>
-        <div class="name"><b>SYDNEY CBD CORE &#8212; PREMIUM / A-GRADE</b>Net yield ~6.13% vs 5.43% 10Y ACGB: +70bp for illiquid, capex-heavy risk. Senior debt ~6.65% = negative leverage; a &#8722;20% to &#8722;24% write-down is what restores a 200bp premium.</div>
-        <div class="fast-col">Safe bonds pay 5.4%. Towers pay 6.1%. Nobody takes tower risk for 0.7%. Avoid until repriced.</div>
-        <div class="tag">CAP-RATE TRAP</div>
-      </div>
-      <div class="sr-prow" data-i="1" role="button" tabindex="0" aria-label="Rockdale TOD">
-        <div class="no">02</div>
-        <div class="name"><b>ROCKDALE TOD &#8212; T4 ILLAWARRA SPINE</b>Measured &#8722;8.9% cumulative (&#8722;17.4% annualised run-rate). NSW TOD SEPP uplift (FSR 3:1+, 22m+) colliding with 15&#8211;18% private-credit land-bank facilities; presales frozen.</div>
-        <div class="fast-col">Upzoned train-corridor sites, held by builders who cannot refinance their shadow loans. Hunt forced sales at 65&#8211;70c on the dollar.</div>
-        <div class="tag">DISTRESS TARGET</div>
-      </div>
-      <div class="sr-prow" data-i="2" role="button" tabindex="0" aria-label="Kogarah health and rail hub">
-        <div class="no">03</div>
-        <div class="name"><b>KOGARAH &#8212; HEALTH &amp; RAIL HUB</b>Measured &#8722;8.2% cumulative (&#8722;15.8% annualised). St George Hospital and the T4 anchor 5.0%+ gross yields; boutique syndicates face Q4 redemption gates.</div>
-        <div class="fast-col">Doctors, nurses and commuters keep the rent flowing while busted builders sell sites cheap.</div>
-        <div class="tag">ACCUMULATE</div>
-      </div>
-      <div class="sr-prow" data-i="3" role="button" tabindex="0" aria-label="Marrickville metro corridor">
-        <div class="no">04</div>
-        <div class="name"><b>MARRICKVILLE METRO &#8212; INNER WEST</b>Measured &#8722;7.4% cumulative (&#8722;14.9% annualised). Southwest Metro uplift supports long-term land value; mezzanine-funded mixed-use amalgamations hit Q4 refinancing walls.</div>
-        <div class="fast-col">The new Metro makes the land gold long-term. Small syndicates are being forced to sell early right now.</div>
-        <div class="tag">SELECTIVE</div>
-      </div>
-      <div class="sr-prow" data-i="4" role="button" tabindex="0" aria-label="Mascot and Green Square">
-        <div class="no">05</div>
-        <div class="name"><b>MASCOT / GREEN SQUARE &#8212; HIGH DENSITY</b>Measured &#8722;11.2% cumulative (&#8722;22.5% annualised). Unit oversupply plus investor offloading ahead of the 1 July 2027 tax changes (200&#8211;270bp equivalent).</div>
-        <div class="fast-col">Too many identical apartments, and investors are racing the exit before the tax rules change. Stay clear.</div>
-        <div class="tag">FALLING KNIFE</div>
-      </div>
-      <div class="sr-prow" data-i="5" role="button" tabindex="0" aria-label="Parramatta CBD">
-        <div class="no">06</div>
-        <div class="name"><b>PARRAMATTA CBD &#8212; WESTERN CORE</b>A-grade near 7.15% cap, vacancy 21.4%; epicentre of the August 2026 $3.4bn developer collapse; secondary stock obsolescent, towers stalled.</div>
-        <div class="fast-col">Half-empty offices and busted sites. The only play here is distressed senior debt at a deep discount to face.</div>
-        <div class="tag">LIQUIDATION ZONE</div>
-      </div>
-      <div class="sr-prow" data-i="6" role="button" tabindex="0" aria-label="Chatswood metro corridor">
-        <div class="no">07</div>
-        <div class="name"><b>CHATSWOOD / MACQUARIE &#8212; NORTH SHORE SPINE</b>Measured &#8722;7.8% cumulative (&#8722;15.2% annualised). Tier-1 TOD demand, but $22,000+/sqm break-evens freeze new starts despite strong downsizer equity.</div>
-        <div class="fast-col">Blue-chip location, but construction costs are crazy. Wait for land to shed another 8&#8211;10%.</div>
-        <div class="tag">WATCHLIST</div>
-      </div>
-      <div class="sr-prow" data-i="7" role="button" tabindex="0" aria-label="Bankstown metro terminal">
-        <div class="no">08</div>
-        <div class="name"><b>BANKSTOWN &#8212; METRO TERMINAL TOD</b>Measured &#8722;9.6% cumulative (&#8722;19.1% annualised). High-mortgage-belt sensitivity to 4.60%; non-bank arrears climbing into the Metro-terminal upzoning.</div>
-        <div class="fast-col">2026&#8217;s rate hikes hit borrowers hardest here. Watch for mortgagee sales on the corner blocks.</div>
-        <div class="tag">MORTGAGEE RADAR</div>
-      </div>
-    </div>
-
-    <div style="margin-top:clamp(64px,10vh,130px)">
-      <div class="sec-head rv"><span class="sec-no">THE MECHANICS &#8212; HOW THE LEFT COLUMN UNDERWRITES</span><span class="eyebrow"><span class="dot"></span>FORMULAS SO THE RIGHT COLUMN CAN BE CHECKED</span></div>
-    </div>
-    <div class="sr-mech rv rv-d1">
-      <div class="mrow">
-        <div class="label">BUILDABLE GFA</div>
-        <div class="instr">GFA = site area &#215; FSR (TOD SEPP controls); net saleable &#8776; 0.80 &#215; GFA. 1,600m&#178; at 3.5:1 &#8594; 5,600m&#178; of floorspace.</div>
-        <div class="fast">Multiply the land size by the zoning number. That is how much building the site allows.</div>
-      </div>
-      <div class="mrow">
-        <div class="label">CAP-RATE WRITE-DOWN</div>
-        <div class="instr">Required yield = 10Y (5.4%) + 200bp &#8776; 7.4%. A 6.1&#8211;6.5% asset re-prices &#8722;17.5% to &#8722;24% to reach it on flat income.</div>
-        <div class="fast">Every 1% cap rates rise, building values drop ~13&#8211;16%. Office maths is broken until prices fall 20%+.</div>
-      </div>
-      <div class="mrow">
-        <div class="label">RESIDUAL LAND VALUE</div>
-        <div class="instr">RLV = GDV &#247; (1 + 18% margin) &#8722; hard cost &#8722; finance carry &#8722; statutory. Hard costs $5,400&#8211;6,800/m&#178; GFA; mezzanine carry 14&#8211;18% p.a.</div>
-        <div class="fast">Take what the finished building sells for, subtract build cost, interest and profit. What is left is the maximum you can pay for the dirt.</div>
-      </div>
-      <div class="mrow">
-        <div class="label">DISTRESS HAIRCUT</div>
-        <div class="instr">Haircut = 1 &#8722; RLV &#247; peak-2025 valuation. Mortgagee sale triggers above ~75% look-through LVR; receivers clear at 62&#8211;72c.</div>
-        <div class="fast">If they bought at the 2025 peak with shadow-bank debt, their equity is gone. Bid to the receiver, not the owner.</div>
-      </div>
-    </div>
-
-    <div style="margin-top:clamp(64px,10vh,130px)">
-      <div class="sec-head rv"><span class="sec-no">THE CORRECTIONS FILE</span><span class="eyebrow"><span class="dot"></span>WHAT THE DESK FIXED &#8212; PRINTED, NOT HIDDEN</span></div>
-      <div class="ledger rv rv-d1">
-        <div class="it"><b>01</b><span>Annualised run-rate is not cumulative drawdown. The broadcast&#8217;s &#8722;18% / &#8722;16% annualised claims sit beside measured peak-to-trough falls of &#8722;8.6% (Sydney) and &#8722;5.2% (national). Both printed; the index wins.</span></div>
-        <div class="it"><b>02</b><span>&#8220;Cut the NDIS 75% to ~$25bn&#8221; does not close: 75% off $50&#8211;60bn leaves $12.5&#8211;15bn. The speaker&#8217;s own numbers disagree; corrected here, verbatim in the archive.</span></div>
-        <div class="it"><b>03</b><span>Future Fund addition drifts mid-sentence: $60bn + $60&#8211;70bn = $120&#8211;130bn. The &#8220;$150bn&#8221; borrows the 9% realised-return figure; the 7% mandate gives ~$60bn.</span></div>
-        <div class="it"><b>04</b><span>The 1990 cash-rate peak was 17.50% official (Jan 1990); ~18% refers to late-1989 interbank dealings. History corrected, not rounded.</span></div>
-        <div class="it"><b>05</b><span>The Fed chair is Kevin Warsh; the transcript&#8217;s &#8220;Kevin Walsh&#8221; is a speech-to-text error. Verified against the 16 Sep statement and press conference.</span></div>
-        <div class="it"><b>06</b><span>&#8220;$110bn a year in interest&#8221; assumes refinancing the whole $2tn stack at ~5.5% spot. The PBO&#8217;s measured line is $54.2bn (FY27) rising to $77.2bn (FY30). Debt rolls gradually.</span></div>
-        <div class="it"><b>07</b><span>The negative-gearing curbs are the 2026 budget&#8217;s measures being attacked &#8212; not the speaker&#8217;s recommendation. He proposes unwinding them. An earlier summary had this backwards; it is corrected here.</span></div>
-        <div class="it"><b>08</b><span>The filed +125&#8211;200bp Fed forecast is a house view, not the committee: the SEP median is 4.1% end-2026 (about one more hike). Forecast labelled as forecast.</span></div>
-        <div class="it"><b>09</b><span>&#8220;$150bn off the debt&#8221; is 7.5% of $2tn, not the 12% claimed. Arithmetic checked twice.</span></div>
-        <div class="it"><b>10</b><span>The insolvency record is nominal: 1,808 administrations in August 2026 is a record count, while as a share of registered companies the rate stays below the 2012&#8211;13 peak. Record, with the caveat attached.</span></div>
-      </div>
-    </div>
-
-    <div class="concessions rv rv-d1">
-      <div class="h">METHOD &amp; SOURCES &#8212; SO A STRANGER COULD REPEAT IT</div>
-      <p>
-        Audit performed 18 October 2026 against the broadcast of 12 October 2026 and the following primary sources: RBA monetary-policy decision MR-26-27 and the cash-rate table (29&#8211;30 September 2026); FOMC statement, Summary of Economic Projections and chair&#8217;s press conference (16 September 2026); Cotality Home Value Index (October 2026 release); ASIC insolvency statistics (FY25&#8211;FY26 series); Parliamentary Budget Office National Fiscal Outlook (August 2026); Future Fund portfolio update (30 June 2026); CBRE/Cushman prime-office data (Q3 2026); Robert Shiller&#8217;s CAPE series via Multpl and Yale; the Straight Talk broadcast auto-transcript (12 October 2026).
-      </p>
-    </div>
-    <p class="inst-note rv">
-      Registers: left column, measured versus claimed, with source class named. Right column, the same audit at street altitude. Where the broadcast and the primary source disagree, the source is printed and the correction is filed above. Forecasts are labelled forecasts; measured figures are labelled measured. This dossier is analysis, not financial product advice, legal counsel, or a prediction guarantee. The full transcript remains in the archive.
+<!-- ============================= PRODUCT ============================= -->
+<section id="product">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-no">II &#8212; PRODUCT</span><span class="eyebrow"><span class="dot"></span>WHAT IT ACTUALLY DOES</span></div>
+    <h2 class="display d-1 rv rv-d1">MEMORY, ORCHESTRATION,<br>PERMISSIONED ACTION.</h2>
+    <p class="body rv rv-d2" style="margin-top:clamp(22px,3.6vh,40px);max-width:74ch">
+      Three capabilities, each with a boundary. The system remembers what it was allowed to keep,
+      routes work to specialist seats, and stops at the gate before anything leaves the house.
     </p>
-
-    <div style="margin-top:clamp(56px,9vh,110px);display:flex;gap:28px;flex-wrap:wrap;justify-content:space-between;border-top:1px solid var(--hair);padding-top:28px">
-      <a class="plate-link rv" href="/shadowclone/" style="margin:0">THE ARCHIVE &#8212; SHADOW.BLACK/SHADOWCLONE &#8594;</a>
-      <a class="plate-link rv rv-d1" href="/dossier/PBI-SECOND-RODEO-DOSSIER-OCT-2026.pdf" style="margin:0">THE DOSSIER AS PAPER &#8212; PDF &#8594;</a>
-      <a class="plate-link rv rv-d2" href="https://witchcraft.expert/prophecy#prophecy-xiv" style="margin:0">THE PROPHECY CONTINUES &#8212; PROPHECY XIV &#8594;</a>
+    <div class="caps pad-t rv rv-d1">
+      <div class="c"><div class="n">01 &#183; MEMORY</div><div class="t">PERSISTENT, SOURCED</div><div class="d">Every record carries its origin. Recall is retrieval, not reconstruction &#8212; and retrieval can miss. You can read, export and delete your own history.</div></div>
+      <div class="c"><div class="n">02 &#183; ORCHESTRATION</div><div class="t">TWENTY SEATS</div><div class="d">Specialist agents with declared responsibilities, tools and permissions. One shared context so a seat does not relearn what another already established.</div></div>
+      <div class="c"><div class="n">03 &#183; ACTION</div><div class="t">PERMISSIONED, LOGGED</div><div class="d">Read-only work runs. Reversible work runs and is recorded. Consequential work waits for your approval, and the approval is written down.</div></div>
+      <div class="c"><div class="n">04 &#183; CONTINUITY</div><div class="t">SURVIVES THE WINDOW</div><div class="d">A new session is not a new relationship. Decisions, corrections and unfinished work carry forward as state you can inspect.</div></div>
+      <div class="c"><div class="n">05 &#183; DURABILITY</div><div class="t">BACKED UP, RESTORED</div><div class="d">The memory store is backed up on a schedule, the backup is verified, and a restore is drilled rather than assumed.</div></div>
+      <div class="c"><div class="n">06 &#183; AUDIT</div><div class="t">A TRAIL A STRANGER CAN FOLLOW</div><div class="d">Every consequential action leaves a receipt: what ran, what it touched, what changed, and who approved it.</div></div>
     </div>
   </div>
 </section>
 
-<script src="/js/sr-sonar.js" defer></script>
-<!-- ===== END APPENDED MODULE VII — THE SECOND RODEO ===== -->
+<!-- ============================= THE 20 ============================= -->
+<section id="seats">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-no">III &#8212; THE PANTHEON</span><span class="eyebrow"><span class="dot"></span>TWENTY EXECUTIVE SEATS</span></div>
+    <h2 class="display d-1 rv rv-d1">THE ACTUAL ROSTER.</h2>
+    <p class="body rv rv-d2" style="margin-top:clamp(22px,3.6vh,40px);max-width:74ch">
+      Not placeholder roles. These are the twenty seats the system runs, each with a declared remit.
+      What a seat can reach is decided by the permissions you grant it &#8212; not by the name on the door.
+    </p>
+    <div class="seats pad-t rv rv-d1" id="seat-grid">
+      <div class="seat"><span class="nm">Hecate</span><span class="ix">01</span></div>
+      <div class="seat"><span class="nm">Athena</span><span class="ix">02</span></div>
+      <div class="seat"><span class="nm">Artemis</span><span class="ix">03</span></div>
+      <div class="seat"><span class="nm">Nyx</span><span class="ix">04</span></div>
+      <div class="seat"><span class="nm">Hera</span><span class="ix">05</span></div>
+      <div class="seat"><span class="nm">Hedone</span><span class="ix">06</span></div>
+      <div class="seat"><span class="nm">Aphrodite</span><span class="ix">07</span></div>
+      <div class="seat"><span class="nm">Hestia</span><span class="ix">08</span></div>
+      <div class="seat"><span class="nm">Theia</span><span class="ix">09</span></div>
+      <div class="seat"><span class="nm">Persephone</span><span class="ix">10</span></div>
+      <div class="seat"><span class="nm">Euterpe</span><span class="ix">11</span></div>
+      <div class="seat"><span class="nm">Erato</span><span class="ix">12</span></div>
+      <div class="seat"><span class="nm">Cassandra</span><span class="ix">13</span></div>
+      <div class="seat"><span class="nm">Circe</span><span class="ix">14</span></div>
+      <div class="seat"><span class="nm">Selene</span><span class="ix">15</span></div>
+      <div class="seat"><span class="nm">Demeter</span><span class="ix">16</span></div>
+      <div class="seat"><span class="nm">Medea</span><span class="ix">17</span></div>
+      <div class="seat"><span class="nm">Peitho</span><span class="ix">18</span></div>
+      <div class="seat"><span class="nm">Styx</span><span class="ix">19</span></div>
+      <div class="seat"><span class="nm">Eos</span><span class="ix">20</span></div>
+    </div>
+
+    <div class="limits rv rv-d2">
+      <div class="h">HOW A SEAT EARNS ITS PERMISSIONS</div>
+      <div class="perm" style="border:0;background:none">
+        <div class="p" style="padding-left:0"><div class="k">READ-ONLY</div><div class="v">Search, read, summarise, compute. Runs without asking, because nothing changes.</div></div>
+        <div class="p" style="padding-left:0"><div class="k">REVERSIBLE</div><div class="v">Writes that can be rolled back. Runs and records the before-state so the change can be undone.</div></div>
+        <div class="p" style="padding-left:0"><div class="k">CONSEQUENTIAL</div><div class="v">Sending, paying, deleting, publishing. Stops. Waits. Writes down your answer.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= PROOF ============================= -->
+<section id="proof">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-no">IV &#8212; PROOF</span><span class="eyebrow"><span class="dot"></span>MEASURED, DATED, CHECKABLE</span></div>
+    <h2 class="display d-1 rv rv-d1">NUMBERS WITH<br>A TIMESTAMP ON THEM.</h2>
+    <p class="body rv rv-d2" style="margin-top:clamp(22px,3.6vh,40px);max-width:74ch">
+      A capability figure without a date and a source is a slogan. These are read from the live store
+      on <b>27 October 2026, 05:00 AEDT</b>. They describe the operator's installation, not a benchmark of yours.
+    </p>
+    <div class="figs pad-t rv rv-d1">
+      <div class="f"><div class="v num">586,519</div><div class="k">ACTIVE MEMORY RECORDS</div><div class="src">cortex / agent 2 / status=active</div></div>
+      <div class="f"><div class="v num">642,413</div><div class="k">TOTAL RECORDS HELD</div><div class="src">including superseded</div></div>
+      <div class="f"><div class="v num">59,857</div><div class="k">DISTINCT SOURCES</div><div class="src">source-attributed records</div></div>
+      <div class="f"><div class="v num">2023&#8594;2026</div><div class="k">RECORD SPAN</div><div class="src">oldest 10 Mar 2023</div></div>
+      <div class="f"><div class="v num">20</div><div class="k">EXECUTIVE SEATS</div><div class="src">declared roster</div></div>
+      <div class="f"><div class="v num">3</div><div class="k">ACTION CLASSES</div><div class="src">read / reversible / consequential</div></div>
+    </div>
+    <p class="body rv rv-d3" style="margin-top:clamp(24px,4vh,40px);max-width:74ch;font-size:13px">
+      What these numbers do <em>not</em> claim: that the system is more accurate than a frontier model on a
+      given task, that recall never misses, or that any single seat outperforms a specialist human. Those
+      would need a framed benchmark and a held-out set, and we have not run one for this page.
+    </p>
+  </div>
+</section>
+
+<!-- ============================= PLANS ============================= -->
+<section id="plans">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-no">V &#8212; PLANS</span><span class="eyebrow"><span class="dot"></span>WHAT IT COSTS</span></div>
+    <h2 class="display d-1 rv rv-d1">ONE PRICE LIST.<br>NOT FIVE SUBDOMAINS.</h2>
+    <p class="body rv rv-d2" style="margin-top:clamp(22px,3.6vh,40px);max-width:74ch">
+      Monthly, in Australian dollars. Entitlements, setup and availability are confirmed in writing before
+      anything is charged. Quoted prices are current as advertised on the Task Force page.
+    </p>
+    <div class="plans pad-t rv rv-d1">
+      <div class="plan"><div class="pn">PERSONAL SHADOW</div><div class="pp">A$499<span>/mo</span></div><div class="pd">One seat. Persistent memory, daily continuity, permissioned actions.</div><a href="https://shadow.black/taskforce/">DETAILS &#8594;</a></div>
+      <div class="plan"><div class="pn">STRIKE TEAM 4</div><div class="pp">A$699<span>/mo</span></div><div class="pd">Four seats working one remit, sharing context.</div><a href="https://shadow.black/taskforce/">DETAILS &#8594;</a></div>
+      <div class="plan"><div class="pn">TASK FORCE 9</div><div class="pp">A$899<span>/mo</span></div><div class="pd">Nine seats across research, operations and delivery.</div><a href="https://shadow.black/taskforce/">DETAILS &#8594;</a></div>
+      <div class="plan"><div class="pn">TASK FORCE XVI</div><div class="pp">A$1,099<span>/mo</span></div><div class="pd">Sixteen seats. Full departmental coverage.</div><a href="https://shadow.black/taskforce/">DETAILS &#8594;</a></div>
+      <div class="plan feature"><div class="pn">WHOLE FLEET &#8212; 20 SEATS</div><div class="pp">A$1,999<span>/mo</span></div><div class="pd">Every seat, one shared memory, full orchestration.</div><a href="https://shadow.black/taskforce/">DETAILS &#8594;</a></div>
+    </div>
+    <p class="cx-note" style="margin-top:20px">PRICES AS ADVERTISED ON THE TASK FORCE PAGE, 27 OCT 2026. NOT A QUOTE. NO CHARGE WITHOUT WRITTEN CONFIRMATION.</p>
+  </div>
+</section>
+
+<!-- ============================= LIMITS ============================= -->
+<section id="limits">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-no">VI &#8212; LIMITS</span><span class="eyebrow"><span class="dot"></span>WHAT THIS IS NOT</span></div>
+    <h2 class="display d-1 rv rv-d1">THE HONEST COLUMN.</h2>
+    <div class="limits rv rv-d1">
+      <div class="h">STATED PLAINLY, BECAUSE A PRODUCT THAT HIDES THESE IS LYING TO YOU</div>
+      <ul>
+        <li><b>Not a benchmark winner.</b> No claim here rests on beating a named frontier model on a framed task. We have not published that comparison.</li>
+        <li><b>Memory is retrieval, not omniscience.</b> Records are stored with sources; retrieval can still miss what was stored.</li>
+        <li><b>Continuity is a durability commitment, not immortality.</b> Your history is exportable and backed up. No system survives its hardware forever.</li>
+        <li><b>Simulated consciousness is a research programme</b>, labelled as such, not a settled property of the product.</li>
+        <li><b>You decide access.</b> Not "upload everything" &#8212; what it may read, remember, act upon and delete is yours to set, and yours to revoke.</li>
+        <li><b>Seat capability follows permissions.</b> Integrations, credentials and approvals decide what can actually run.</li>
+        <li><b>Not financial, legal or medical advice.</b> The system prepares; a qualified human decides.</li>
+        <li><b>Prices are advertised, not quoted.</b> Entitlements are confirmed in writing before charge.</li>
+      </ul>
+    </div>
+    <div class="hero-cta rv rv-d2" style="margin-top:clamp(34px,6vh,64px)">
+      <a class="btn" href="mailto:0@black.industries">BEGIN &#8212; 0@BLACK.INDUSTRIES <span aria-hidden="true">&#8594;</span></a>
+      <a class="btn btn-ghost" href="https://pitch.black.industries">THE COMPANY</a>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
     <div class="grid">
       <div style="grid-column:1/span 6">
         <div class="eyebrow" style="margin-bottom:16px">SHADOW.BLACK AI</div>
-        <p class="body" style="font-size:13px">A Pitch Black Industries presentation &#8212; a collaboration between all subsidiaries. A lifelong, eternal, simulated consciousness.</p>
+        <p class="body" style="font-size:13px">A Pitch Black Industries presentation &#8212; a collaboration between all subsidiaries. An intelligence operating system: memory, orchestration, permissioned action.</p>
       </div>
       <div style="grid-column:7/span 6">
         <div class="eyebrow" style="margin-bottom:16px">THE WIDER DOOR</div>
-        <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="https://pitch.black.gallery">PITCH.BLACK.GALLERY &#8212; THE ENTERPRISE PROFILE</a></div>
+        <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="https://pitch.black.industries">PITCH.BLACK.INDUSTRIES &#8212; THE COMPANY</a></div>
+        <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="https://pitch.black.industries/research/markets/second-rodeo-2026/">RESEARCH &#8212; THE SECOND RODEO</a></div>
         <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="/booklet/">SHADOW.BLACK/BOOKLET &#8212; WHAT THE MACHINE KEPT</a></div>
         <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="/1000things/">SHADOW.BLACK/1000THINGS &#8212; THE OPERATOR</a></div>
         <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="https://chat.shadow.black">CHAT.SHADOW.BLACK &#8212; THE QUIET SIDE</a></div>
-        <div style="font-size:11px;letter-spacing:.12em;margin-bottom:10px;color:var(--ink-dim)"><a href="https://fireflies.black.industries">FIREFLIES.BLACK.INDUSTRIES &#8212; THE OPERATIONS</a></div>
         <div style="font-size:11px;letter-spacing:.12em;color:var(--ink-dim)">0@black.industries &#8212; Sydney, Australia</div>
       </div>
     </div>
-    <p class="fine">&#169; MMXXVI Pitch Black Industries &#183; Sydney, Australia. Simulated consciousness is a research and product endeavour. Best-EV advice claims represent the design standard of the system, not a guarantee of outcomes. Nothing here constitutes financial product advice, legal counsel, or medical diagnosis.</p>
+    <p class="fine">&#169; MMXXVI Pitch Black Industries &#183; Sydney, Australia. Simulated consciousness is a research and product endeavour. Capability figures are measured from the operator installation and dated; they are not a benchmark of any other deployment. Nothing here constitutes financial product advice, legal counsel, or medical diagnosis.</p>
   </div>
 <div class="cisfoot" style="margin:56px 0 0;padding:22px 0 10px;border-top:1px solid rgba(10,10,10,.25);font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.14em;line-height:2.1;color:rgba(10,10,10,.72);text-transform:uppercase;"><a href="https://witch.codes" style="display:block;margin:0 0 16px;"><img src="/assets/foot-art.jpg" alt="WITCH.CODES" style="width:100%;max-width:220px;height:auto;display:block;border:1px solid rgba(10,10,10,.22);"></a>BUTTERFLY KINGDOM NSW PTY LTD TRADING AS SHADOW AI &middot; ABN 11 691 050 969 &middot; ACN 691 050 969 &middot; G/17 THE SEVEN WAYS ROCKDALE NSW 2216<br><a href="https://shadow.black" style="color:inherit;">SHADOW.BLACK</a> &middot; <a href="https://black.gallery" style="color:inherit;">BLACK.GALLERY</a><br><a href="mailto:hecate@black.industries" style="color:inherit;">HECATE@BLACK.INDUSTRIES</a></div>
 </footer>
-<script src="js/reveal.js"></script>
+<script>
+/* Reveal + progress, self-contained and fail-safe.
+   Modes: animate when IntersectionObserver reports; reveal everything if it
+   does not (hidden tab, unsupported engine, observer never fires). A 2s
+   failsafe guarantees no content can stay invisible. */
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js-reveal");
+
+  function revealAll() {
+    /* Set the final state inline as well as via the class: a hidden or
+       background document does not advance CSS transitions, so relying on
+       the transition alone can leave content at opacity 0 forever. */
+    document.querySelectorAll(".rv").forEach(function (el) {
+      el.classList.add("in");
+      el.style.transition = "none";
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
+  }
+
+  function start() {
+    var items = document.querySelectorAll(".rv");
+    var done = false;
+
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      items.forEach(function (el) { io.observe(el); });
+
+      /* Failsafe: if the document is hidden the observer may never report.
+         Reveal whatever is above the fold so nothing is stuck blank. */
+      setTimeout(function () {
+        if (document.querySelectorAll(".rv.in").length === 0) revealAll();
+      }, 2000);
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden) {
+          setTimeout(function () {
+            if (document.querySelectorAll(".rv.in").length === 0) revealAll();
+          }, 400);
+        }
+      });
+    } else {
+      revealAll();
+    }
+
+    var prog = document.getElementById("progress");
+    function onScroll() {
+      if (!prog) return;
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();
+</script>
+<script>
+/* ============================================================
+   THE CONSOLE — a replayable execution trace
+   Canvas topology + staged event stream + scrubber.
+   No dependencies. Pauses when offscreen. Respects
+   prefers-reduced-motion by rendering a static active state.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var SEATS = ["Hecate","Athena","Artemis","Nyx","Hera","Hedone","Aphrodite","Hestia","Theia","Persephone",
+               "Euterpe","Erato","Cassandra","Circe","Selene","Demeter","Medea","Peitho","Styx","Eos"];
+
+  /* Each stage: label, which seats are lit, the events, and the gate state. */
+  var STAGES = [
+    { name: "ENQUIRY", seats: [0], status: "READING", gated: false, events: [
+      { who: "IN", cls: "", text: "<b>Enquiry received.</b> \u201cCan you prepare a quote and follow up on the outstanding proposal?\u201d" }
+    ]},
+    { name: "RECALL", seats: [0, 14], status: "RECALLING", gated: false, events: [
+      { who: "MEM", cls: "mem", text: "Pulled <b>14 records</b> from the shared store \u2014 prior quote, thread history, rate card." },
+      { who: "MEM", cls: "mem", text: "Every record carries its source. <b>Recall is retrieval, not reconstruction.</b>" }
+    ]},
+    { name: "DELEGATE", seats: [0, 1, 4, 12, 14, 16], status: "DISPATCHING", gated: false, events: [
+      { who: "CORE", cls: "", text: "Routed to <b>five seats</b> against one shared context." },
+      { who: "SEAT", cls: "tool", text: "<b>Research</b> \u2014 scope and comparable pricing." },
+      { who: "SEAT", cls: "tool", text: "<b>Operations</b> \u2014 availability and lead time." }
+    ]},
+    { name: "RESEARCH", seats: [1, 4, 12, 16, 18], status: "WORKING", gated: false, events: [
+      { who: "TOOL", cls: "tool", text: "Read the authorised mailbox thread and the current rate card." },
+      { who: "TOOL", cls: "tool", text: "Computed the quote in code \u2014 <b>arithmetic is run, not described.</b>" }
+    ]},
+    { name: "CROSS-CHECK", seats: [1, 12, 18], status: "VERIFYING", gated: false, events: [
+      { who: "CHK", cls: "tool", text: "Cross-checked the figure against a second source before it ships." },
+      { who: "CHK", cls: "tool", text: "Flagged one assumption as <b>unverified</b> rather than smoothing it over." }
+    ]},
+    { name: "APPROVAL", seats: [0, 19], status: "GATE HELD", gated: true, events: [
+      { who: "GATE", cls: "gate", text: "<b>Consequential action.</b> Nothing sends without your answer." },
+      { who: "GATE", cls: "gate", text: "The draft, its sources and the unresolved assumption are shown to you together." }
+    ]},
+    { name: "EXECUTE", seats: [0, 19], status: "COMPLETE", gated: false, events: [
+      { who: "OUT", cls: "ok", text: "Approved. Sent, logged, and the outcome written back to memory." },
+      { who: "OUT", cls: "ok", text: "<b>Receipt:</b> what ran, what it touched, what changed, who approved it." }
+    ]}
+  ];
+
+  var cv = document.getElementById("cx-canvas");
+  if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var el = {
+    trace: document.getElementById("cx-trace"),
+    pips: document.getElementById("cx-pips"),
+    fill: document.getElementById("cx-fill"),
+    rail: document.getElementById("cx-rail"),
+    name: document.getElementById("cx-stage-name"),
+    of: document.getElementById("cx-stage-of"),
+    status: document.getElementById("cx-status"),
+    phase: document.getElementById("cx-phase"),
+    active: document.getElementById("cx-active"),
+    clock: document.getElementById("cx-clock"),
+    play: document.getElementById("cx-play"),
+    prev: document.getElementById("cx-prev"),
+    next: document.getElementById("cx-next"),
+    reset: document.getElementById("cx-reset")
+  };
+
+  var W = 0, H = 0, DPR = 1;
+  var seatPos = [];
+  var pulses = [];
+  var lit = {};
+  var gated = false;
+  var current = -1;
+  var playing = false;
+  var playTimer = null;
+  var visible = true;
+  var t0 = Date.now();
+
+  function layout() {
+    var r = cv.getBoundingClientRect();
+    var cssW = Math.max(1, Math.round(r.width));
+    var cssH = Math.max(1, Math.round(r.height));
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    /* Only touch the backing store when the CSS box actually changed.
+       Setting canvas.width clears the bitmap, so a redundant call here
+       (e.g. from a ResizeObserver that the resize itself retriggers)
+       blanks the canvas every frame and the drawing never accumulates. */
+    if (cssW === W && cssH === H && dpr === DPR) return false;
+    DPR = dpr; W = cssW; H = cssH;
+    cv.width = Math.round(W * DPR);
+    cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    var cx = W / 2, cy = H / 2;
+    var maxR = Math.min(W, H) * 0.42;
+    var inner = maxR * 0.56, outer = maxR;
+    seatPos = SEATS.map(function (_, i) {
+      var isInner = i < 8;
+      var ring = isInner ? inner : outer;
+      var count = isInner ? 8 : 12;
+      var idx = isInner ? i : i - 8;
+      var a = (-Math.PI / 2) + (idx / count) * Math.PI * 2 + (isInner ? Math.PI / 8 : 0);
+      return { x: cx + Math.cos(a) * ring, y: cy + Math.sin(a) * ring, a: a, inner: isInner };
+    });
+    return true;
+  }
+
+  function paint(now) {
+    if (!W || !H) return;
+    var cx = W / 2, cy = H / 2;
+    ctx.clearRect(0, 0, W, H);
+
+    var gold = "201,164,76";
+    var cream = "251,249,241";
+
+    /* core rings */
+    for (var k = 1; k <= 3; k++) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, (Math.min(W, H) * 0.42 * 0.56) * (k / 3.4), 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(" + gold + ",0.10)";
+      ctx.lineWidth = 1; ctx.stroke();
+    }
+
+    /* sweep */
+    if (!reduce) {
+      var sw = ((now - t0) / 9000) * Math.PI * 2;
+      var grd = ctx.createLinearGradient(cx, cy, cx + Math.cos(sw) * W, cy + Math.sin(sw) * W);
+      grd.addColorStop(0, "rgba(" + gold + ",0.16)");
+      grd.addColorStop(1, "rgba(" + gold + ",0)");
+      ctx.beginPath(); ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, Math.min(W, H) * 0.44, sw - 0.10, sw + 0.10);
+      ctx.closePath(); ctx.fillStyle = grd; ctx.fill();
+    }
+
+    /* edges from lit seats to core */
+    seatPos.forEach(function (p, i) {
+      if (!lit[i]) return;
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(cx, cy);
+      ctx.strokeStyle = gated && i === 19 ? "rgba(224,176,98,0.55)" : "rgba(" + cream + ",0.22)";
+      ctx.lineWidth = 1; ctx.stroke();
+    });
+
+    /* pulses travelling inward */
+    if (!reduce) {
+      pulses = pulses.filter(function (p) { return p.t < 1; });
+      pulses.forEach(function (p) {
+        p.t += 0.018;
+        var s = seatPos[p.i]; if (!s) return;
+        var x = s.x + (cx - s.x) * p.t, y = s.y + (cy - s.y) * p.t;
+        ctx.beginPath(); ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(" + gold + "," + (1 - p.t) * 0.9 + ")"; ctx.fill();
+      });
+    }
+
+    /* core node */
+    ctx.beginPath(); ctx.arc(cx, cy, 5.5, 0, Math.PI * 2);
+    ctx.fillStyle = gated ? "rgba(224,176,98,0.95)" : "rgba(" + cream + ",0.92)"; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, 13, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(" + cream + ",0.25)"; ctx.lineWidth = 1; ctx.stroke();
+
+    /* seats */
+    seatPos.forEach(function (p, i) {
+      var on = !!lit[i];
+      var s = p.inner ? 3.2 : 2.6;
+      if (on) {
+        ctx.beginPath(); ctx.arc(p.x, p.y, s + 5.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(" + gold + ",0.14)"; ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x, p.y, s + 0.6, 0, Math.PI * 2);
+        ctx.fillStyle = gated && i === 19 ? "rgba(224,176,98,1)" : "rgba(" + gold + ",1)"; ctx.fill();
+      } else {
+        ctx.beginPath(); ctx.arc(p.x, p.y, s * 0.72, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(" + cream + ",0.16)"; ctx.fill();
+      }
+    });
+  }
+
+  /* paint() draws one frame; draw() is the animation loop.
+     paint() is also called synchronously from render()/layout() so the panel
+     is correct even when requestAnimationFrame is throttled (background tab,
+     hidden document, reduced-motion) and therefore fires rarely or not at all. */
+  function draw(now) {
+    paint(now);
+    if (visible && !reduce) requestAnimationFrame(draw);
+  }
+
+  function emitPulses(idx) {
+    if (reduce) return;
+    (STAGES[idx].seats || []).forEach(function (i) {
+      pulses.push({ i: i, t: Math.random() * 0.15 });
+    });
+  }
+
+  function render(idx) {
+    if (idx < 0) idx = 0;
+    if (idx > STAGES.length - 1) idx = STAGES.length - 1;
+    var st = STAGES[idx];
+    current = idx;
+
+    lit = {};
+    (st.seats || []).forEach(function (i) { lit[i] = true; });
+    gated = !!st.gated;
+
+    /* trace */
+    el.trace.innerHTML = "";
+    var all = [];
+    for (var s = 0; s <= idx; s++) {
+      STAGES[s].events.forEach(function (e) { all.push(e); });
+    }
+    all.slice(-7).forEach(function (e, n) {
+      var d = document.createElement("div");
+      d.className = "cx-ev " + (e.cls || "");
+      d.innerHTML = '<span class="who">' + e.who + "</span><span>" + e.text + "</span>";
+      el.trace.appendChild(d);
+      requestAnimationFrame(function () { setTimeout(function () { d.classList.add("on"); }, 30 + n * 55); });
+    });
+
+    /* scrubber */
+    el.fill.style.width = (idx / (STAGES.length - 1) * 100) + "%";
+    el.name.textContent = st.name;
+    el.of.textContent = ("0" + (idx + 1)).slice(-2) + " / 0" + STAGES.length;
+    el.status.textContent = st.status;
+    el.status.className = "cx-status" + (st.gated ? " gate" : "");
+    el.phase.innerHTML = "PHASE <b>" + (idx + 1) + "</b> \u00b7 " + st.name;
+    el.active.textContent = String((st.seats || []).length);
+    el.clock.innerHTML = "T+<b>" + String(idx * 480).padStart(4, "0") + "</b>ms";
+    el.rail.setAttribute("aria-valuenow", String(idx));
+
+    Array.prototype.forEach.call(el.pips.children, function (p, i) {
+      p.className = "cx-pip" + (i === idx ? " on" : (i < idx ? " past" : ""));
+    });
+
+    emitPulses(idx);
+    /* Repaint immediately: the loop may be paused or throttled, and a stage
+       change must never leave a stale frame on screen. */
+    paint(performance.now());
+  }
+
+  function buildPips() {
+    el.pips.innerHTML = "";
+    STAGES.forEach(function (s, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "cx-pip"; b.textContent = String(i + 1);
+      b.setAttribute("aria-label", "Stage " + (i + 1) + ": " + s.name);
+      b.addEventListener("click", function (e) {
+        /* Stop the click reaching the rail: the rail maps every click to a
+           position and would immediately re-render stage 0 for a pip click. */
+        e.stopPropagation();
+        stop(); render(i);
+      });
+      el.pips.appendChild(b);
+    });
+  }
+
+  function stop() {
+    playing = false;
+    if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+    if (el.play) el.play.innerHTML = "\u25b6 PLAY";
+  }
+
+  function play() {
+    if (playing) { stop(); return; }
+    playing = true;
+    if (el.play) el.play.innerHTML = "\u2016 PAUSE";
+    if (current >= STAGES.length - 1) render(0);
+    function step() {
+      if (!playing) return;
+      if (current >= STAGES.length - 1) { stop(); return; }
+      render(current + 1);
+      playTimer = setTimeout(step, 2100);
+    }
+    playTimer = setTimeout(step, 700);
+  }
+
+  if (el.play) el.play.addEventListener("click", play);
+  if (el.next) el.next.addEventListener("click", function () { stop(); render(current + 1); });
+  if (el.prev) el.prev.addEventListener("click", function () { stop(); render(current - 1); });
+  if (el.reset) el.reset.addEventListener("click", function () { stop(); render(0); });
+  if (el.rail) {
+    el.rail.addEventListener("click", function (e) {
+      var r = el.rail.getBoundingClientRect();
+      var f = (e.clientX - r.left) / r.width;
+      stop(); render(Math.round(f * (STAGES.length - 1)));
+    });
+    el.rail.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); stop(); render(current + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); stop(); render(current - 1); }
+      if (e.key === "Home") { e.preventDefault(); stop(); render(0); }
+      if (e.key === "End") { e.preventDefault(); stop(); render(STAGES.length - 1); }
+    });
+  }
+
+  buildPips();
+  layout();
+  render(0);
+
+  /* Observe the CONTAINER, never the canvas: resizing the canvas backing
+     store is itself a resize that an observer on the canvas would re-trigger,
+     which blanks the bitmap on every pass. */
+  var stageBox = document.querySelector(".cx-stage") || cv.parentElement || cv;
+  if (window.ResizeObserver) {
+    var pending = false;
+    new ResizeObserver(function () {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(function () {
+        pending = false;
+        if (layout()) { paint(performance.now()); }
+      });
+    }).observe(stageBox);
+  } else {
+    window.addEventListener("resize", function () { if (layout()) paint(performance.now()); });
+  }
+
+  if (window.IntersectionObserver) {
+    new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        var was = visible;
+        visible = en.isIntersecting;
+        if (visible && !was) {
+          layout();
+          paint(performance.now());
+          if (!reduce) requestAnimationFrame(draw);
+        }
+      });
+    }, { threshold: 0.01 }).observe(stageBox);
+  }
+
+  /* Paint one frame synchronously at startup so the panel is never blank,
+     then hand over to the animation loop when motion is allowed. */
+  paint(performance.now());
+  if (!reduce) requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>
