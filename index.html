@@ -63,6 +63,7 @@
     <a href="#claim">THE CLAIM</a>
     <a href="#instinct">THE INSTINCT FILE</a>
     <a href="#invite">THE INVITATION</a>
+    <a href="#second-rodeo">THE SECOND RODEO</a>
   </nav>
   <a class="plate-link" href="https://pitch.black.gallery" style="margin:0;padding-bottom:0;border:0;font-size:9px">THE ENTERPRISE &#8594;</a>
 </header>
@@ -277,6 +278,558 @@
     </div>
   </div>
 </section>
+
+<!-- ===== APPENDED MODULE: VII - THE SECOND RODEO (Umbra dossier, filed 18 Oct 2026) ===== -->
+<style>
+  /* scoped to #second-rodeo; reuses house tokens from css/book.css */
+  .sr-bridge{position:relative;border-top:1px solid var(--hair);margin-top:clamp(40px,7vh,90px);
+    padding-top:clamp(40px,7vh,80px);display:flex;align-items:center;gap:clamp(16px,2vw,32px);
+    padding-inline:clamp(20px,3.4vw,56px)}
+  .sr-bridge .rule{flex:1;height:1px;background:var(--hair-soft)}
+  .sr-bridge .mark{font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+  .sr-bridge .mark b{color:var(--ink-dim);font-weight:400}
+  #second-rodeo{background:#070707}
+  #second-rodeo .sr-note{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint)}
+  .sr-grid2{display:grid;grid-template-columns:1.07fr .93fr;gap:0}
+  .sr-mod{border-top:1px solid var(--hair);padding:clamp(34px,5vh,64px) 0}
+  .sr-mod .sr-mod-no{font-size:10px;font-weight:400;letter-spacing:.34em;color:var(--ink-faint);text-transform:uppercase}
+  .sr-mod h3{font-size:clamp(19px,2vw,28px);font-weight:200;text-transform:uppercase;letter-spacing:.05em;line-height:1.25;margin:14px 0 18px;max-width:34ch}
+  .sr-mod .sr-body{color:var(--ink-dim);font-size:14.5px;line-height:1.8;max-width:62ch}
+  .sr-mod .sr-body b{color:var(--ink);font-weight:500}
+  .sr-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .sr-chip{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);
+    border:1px solid var(--hair);padding:7px 12px;display:inline-flex;align-items:center;gap:8px}
+  .sr-chip .sq{width:5px;height:5px;background:var(--gold)}
+  .sr-chip.verified .sq{background:var(--ink)}
+  .sr-chip.corrected{border-color:rgba(201,164,76,.5)}
+  .sr-kv{margin-top:26px;border-top:1px solid var(--hair-soft);display:grid;grid-template-columns:repeat(3,1fr)}
+  .sr-kv .cell{padding:16px 18px 4px 0}
+  .sr-kv .v{font-size:clamp(17px,1.6vw,22px);font-weight:200;letter-spacing:-.01em;font-feature-settings:"tnum" 1}
+  .sr-kv .k{margin-top:6px;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim)}
+  .sr-left{padding-right:clamp(22px,3vw,48px);border-right:1px solid var(--hair)}
+  .sr-right{padding-left:clamp(22px,3vw,48px)}
+  .sr-right .fast-flag{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .sr-right .fast-flag::before{content:"";width:14px;height:1px;background:var(--ink-faint)}
+  .sr-right h4{font-size:clamp(18px,1.9vw,26px);font-weight:200;letter-spacing:.04em;line-height:1.3;text-transform:uppercase;margin-bottom:16px;max-width:26ch}
+  .sr-fast-lines{list-style:none}
+  .sr-fast-lines li{position:relative;padding-left:20px;margin-bottom:11px;font-size:14.5px;line-height:1.7;color:var(--ink)}
+  .sr-fast-lines li::before{content:"\2192";position:absolute;left:0;top:0;color:var(--gold);font-size:12px}
+  .sr-bottom{margin-top:20px;border:1px solid var(--hair);padding:12px 14px;font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-dim);line-height:1.9}
+  .sr-bottom b{color:var(--ink);font-weight:500}
+  /* sonar stage */
+  .sr-sonar{position:relative;border:1px solid var(--hair);background:#050505;overflow:hidden}
+  .sr-sonar .stage{position:relative;height:clamp(360px,44vw,680px)}
+  .sr-sonar canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .sr-sonar .hud{position:absolute;inset:0;pointer-events:none;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+  .sr-sonar .hud-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+  .sr-hud-tag{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-dim);
+    background:rgba(5,5,5,.72);border:1px solid var(--hair-soft);padding:7px 10px}
+  .sr-hud-tag b{color:var(--ink);font-weight:400}
+  .sr-pills{display:flex;flex-wrap:wrap;gap:6px;pointer-events:auto;max-width:100%}
+  .sr-pill{font-family:var(--sans);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);
+    background:rgba(5,5,5,.72);border:1px solid var(--hair-soft);padding:7px 10px;cursor:pointer;transition:all .3s var(--ease)}
+  .sr-pill:hover{color:var(--ink);border-color:var(--ink-dim)}
+  .sr-pill.active{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+  .sr-scrub{display:flex;align-items:center;gap:14px;pointer-events:auto;border:1px solid var(--hair-soft);
+    background:rgba(5,5,5,.78);padding:9px 12px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-dim)}
+  .sr-scrub input[type=range]{flex:1;min-width:120px;accent-color:var(--gold);background:transparent;cursor:pointer}
+  .sr-scrub .regime{color:var(--ink);white-space:nowrap}
+  .sr-readout{display:grid;grid-template-columns:1.07fr .93fr;border-top:1px solid var(--hair)}
+  .sr-readout .pane{padding:22px clamp(18px,2.4vw,30px) 26px}
+  .sr-readout .pane+.pane{border-left:1px solid var(--hair)}
+  .sr-readout .flag{font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+  .sr-readout .title{font-size:clamp(15px,1.5vw,20px);font-weight:300;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+  .sr-readout .txt{font-size:13.5px;line-height:1.75;color:var(--ink-dim)}
+  .sr-readout .txt b{color:var(--ink);font-weight:500}
+  .sr-readout .fast .txt{color:var(--ink);font-size:14px}
+  .sr-nogl .sr-csssonar{display:block}
+  .sr-csssonar{display:none;position:absolute;inset:0}
+  .sr-csssonar .ring{position:absolute;inset:min(6vw,60px);border:1px solid var(--hair-soft);border-radius:50%}
+  .sr-csssonar .ring:nth-child(2){inset:min(11vw,110px)}
+  .sr-csssonar .ring:nth-child(3){inset:min(16vw,160px)}
+  .sr-csssonar .sweep{position:absolute;inset:min(6vw,60px);border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(201,164,76,.14) 0deg, rgba(201,164,76,.03) 40deg, transparent 70deg, transparent 360deg);
+    animation:sr-sweep 10s linear infinite}
+  @keyframes sr-sweep{to{transform:rotate(360deg)}}
+  /* precinct board */
+  .sr-board{border:1px solid var(--hair);margin-top:26px}
+  .sr-prow{display:grid;grid-template-columns:54px 1.15fr 1fr 90px;gap:0;border-top:1px solid var(--hair-soft);cursor:pointer;transition:background .35s var(--ease)}
+  .sr-prow:first-child{border-top:0}
+  .sr-prow>div{padding:16px 18px;font-size:12.5px;line-height:1.65;color:var(--ink-dim)}
+  .sr-prow .no{font-size:10px;letter-spacing:.2em;color:var(--ink-faint);font-weight:400}
+  .sr-prow .name{color:var(--ink);letter-spacing:.02em}
+  .sr-prow .name b{display:block;font-weight:400;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;margin-bottom:6px}
+  .sr-prow .fast-col{color:var(--ink)}
+  .sr-prow .tag{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);align-self:center;text-align:right}
+  .sr-prow:hover{background:rgba(251,249,241,.03)}
+  .sr-prow.active{background:rgba(201,164,76,.07);box-shadow:inset 2px 0 0 var(--gold)}
+  .sr-prow.active .tag{color:var(--gold)}
+  /* mechanics */
+  .sr-mech{margin-top:26px;border:1px solid var(--hair)}
+  .sr-mech .mrow{display:grid;grid-template-columns:220px 1.07fr .93fr;border-top:1px solid var(--hair-soft)}
+  .sr-mech .mrow:first-child{border-top:0}
+  .sr-mech .mrow>div{padding:18px 20px;font-size:13px;line-height:1.7;color:var(--ink-dim)}
+  .sr-mech .label{color:var(--ink);letter-spacing:.12em;text-transform:uppercase;font-size:10px;align-self:center}
+  .sr-mech .instr{border-left:1px solid var(--hair-soft)}
+  .sr-mech .fast{color:var(--ink)}
+  @media (max-width:880px){
+    .sr-grid2,.sr-readout{grid-template-columns:1fr}
+    .sr-left{border-right:0;padding-right:0}
+    .sr-right{padding-left:0;border-top:1px solid var(--hair);padding-top:28px;margin-top:28px}
+    .sr-prow{grid-template-columns:44px 1fr}
+    .sr-prow .fast-col,.sr-prow .tag{grid-column:2}
+    .sr-mech .mrow{grid-template-columns:1fr}
+    .sr-mech .instr{border-left:0}
+    .sr-bridge .mark{white-space:normal;text-align:center}
+  }
+  @media print{
+    .sr-sonar,.sr-pills,.sr-scrub{display:none!important}
+    .sr-prow:hover{background:none}
+    #second-rodeo{background:transparent}
+  }
+</style>
+
+<div class="sr-bridge" aria-hidden="true" id="second-rodeo-begin">
+  <div class="rule"></div>
+  <div class="mark"><b>VII</b> &#183; THE SECOND RODEO &#183; AN APPENDED DOSSIER IN TWO REGISTERS &#183; FILED 18 OCTOBER MMXXVI</div>
+  <div class="rule"></div>
+</div>
+
+<section id="second-rodeo">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-no">APPENDIX &#8212; VII &#183; THE SECOND RODEO</span><span class="eyebrow"><span class="dot"></span>UMBRA DOSSIER &#183; OCTOBER 2026</span></div>
+    <h2 class="display d-1 rv rv-d1">THE IRON DISCOUNT RATE<br>&amp; THE SECOND RODEO.</h2>
+    <p class="body rv rv-d2" style="margin-top:clamp(24px,4vh,48px);max-width:78ch">
+      One page reads the world the way a credit committee reads it. The other reads it the way a person reads it at 6 a.m. before their shift.
+      Both are the same audit: what a macroeconomist said on the public record in October 2026, what the primary sources actually measure, and where the two disagree.
+      Nothing below changes what came before it on this page. It is the next room, through a doorway we cut cleanly.
+    </p>
+    <div class="numbers rv rv-d3" style="margin-top:clamp(36px,6vh,64px)">
+      <div class="cell"><div class="val num">4.60<sup>%</sup></div><div class="lbl">RBA CASH RATE &#8212; FOUR HIKES IN 2026, HIGHEST SINCE NOV 2011</div></div>
+      <div class="cell"><div class="val num">3.75&#8211;4.00<sup>%</sup></div><div class="lbl">FED FUNDS TARGET &#8212; +25BPS, 16 SEPT 2026, CHAIR KEVIN WARSH</div></div>
+      <div class="cell"><div class="val num">5.4<sup>%</sup></div><div class="lbl">AUSTRALIAN 10-YEAR BOND, PEAK &#8212; HIGHEST SINCE 2011</div></div>
+      <div class="cell"><div class="val num">5.36<sup>%</sup></div><div class="lbl">US 10-YEAR TREASURY &#8212; HIGHEST SINCE 2002</div></div>
+      <div class="cell"><div class="val num">&#8776;41<sup>&#215;</sup></div><div class="lbl">SHILLER CAPE, OCT 2026 &#8212; SECOND-HIGHEST IN THE MODERN SERIES (RECORD 44.2, DEC 1999)</div></div>
+      <div class="cell"><div class="val num">&#8722;8.6<sup>%</sup></div><div class="lbl">SYDNEY DWELLINGS PEAK-TO-TROUGH, MEASURED (CLAIMED RUN-RATE: &#8722;18%)</div></div>
+      <div class="cell"><div class="val num">$2.03<sup>TN</sup></div><div class="lbl">COMBINED FEDERAL + STATE GROSS DEBT BY 2030 (PBO FORECAST)</div></div>
+      <div class="cell"><div class="val num">$356<sup>BN</sup></div><div class="lbl">FUTURE FUND, DECADE RETURN 9.0% P.A. VS 7.1% TARGET</div></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(56px,9vh,110px)">
+    <div class="sec-head rv"><span class="sec-no">THE INSTRUMENT</span><span class="eyebrow"><span class="dot"></span>4D TESSERACT SONAR &#183; LIVE</span></div>
+    <p class="body rv rv-d1" style="max-width:70ch;margin-bottom:clamp(24px,4vh,44px)">
+      A four-dimensional hypercube rotating through the interest-rate plane. Eight precinct beacons rise from the measured stress field.
+      Drag the w-axis: every turn of the fourth dimension is a stage of the tightening cycle. Select a precinct to read it in both registers.
+    </p>
+    <div class="sr-sonar rv rv-d2" id="sr-sonar-box">
+      <div class="stage" id="sr-stage">
+        <canvas id="sr-canvas" aria-label="Four-dimensional tesseract sonar over the Sydney stress field"></canvas>
+        <div class="sr-csssonar" aria-hidden="true"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="sweep"></div></div>
+        <div class="hud">
+          <div class="hud-row">
+            <span class="sr-hud-tag">4D TESSERACT &#215; SYDNEY STRESS FIELD &#183; <b>CLICK A BEACON OR A PRECINCT</b></span>
+            <span class="sr-hud-tag" id="sr-phase">W-PHASE <b>0.00</b> RAD &#183; <b>Q4 2026 &#8212; CREDIT FREEZE</b></span>
+          </div>
+          <div class="hud-row" style="align-items:flex-end">
+            <div class="sr-pills" id="sr-pills"></div>
+          </div>
+          <div class="hud-row" style="align-items:flex-end">
+            <span class="sr-hud-tag" style="pointer-events:none">ACGB 10Y <b>5.4%</b> &#183; RBA <b>4.60%</b> &#183; REQ. YIELD <b>7.4%</b></span>
+            <div class="sr-scrub">
+              <span>4D HYPERFRAME W-AXIS</span>
+              <input type="range" id="sr-w" min="0" max="628" value="300" aria-label="Fourth-dimension phase">
+              <span class="regime" id="sr-regime">Q4 2026 &#8212; CREDIT FREEZE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sr-readout">
+        <div class="pane">
+          <div class="flag">INSTITUTIONAL READOUT &#183; <span id="sr-inst-code">NODE 02 &#8212; ROCKDALE TOD</span></div>
+          <div class="title" id="sr-inst-title">Rockdale T4 spine &#8212; amalgamation distress</div>
+          <div class="txt" id="sr-inst-txt">Loading field data.</div>
+        </div>
+        <div class="pane fast">
+          <div class="flag">PLAIN READOUT</div>
+          <div class="title" id="sr-fast-title">&#8212;</div>
+          <div class="txt" id="sr-fast-txt">&#8212;</div>
+        </div>
+      </div>
+    </div>
+    <p class="sr-note rv" style="margin-top:14px">Drag the canvas to orbit &#183; arrow keys step precincts &#183; reduced-motion renders one clean frame</p>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(56px,9vh,110px)">
+    <div class="sec-head rv"><span class="sec-no">THE LEDGER &#8212; NINE MODULES</span><span class="eyebrow"><span class="dot"></span>TWO REGISTERS, ONE AUDIT</span></div>
+    <p class="body rv rv-d1" style="max-width:76ch;margin-bottom:clamp(24px,4vh,44px)">
+      Left: the credit committee&#8217;s register &#8212; measured versus claimed, source class named. Right: the same fact at street level, one breath per line.
+      The full transcript of the broadcast this audits lives in the archive; where the speaker and the primary source disagree, the primary source wins and the correction is printed.
+    </p>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 01 &#183; SECULAR REGIME SHIFT</span><span class="sr-chip verified"><span class="sq"></span>VERIFIED &#8212; CORROBORATED BY RBA, SEP 2026</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>AI capex flips forty years of tech deflation into goods inflation</h3>
+          <div class="sr-body">From the January 1990 peak (official cash rate 17.50%; overnight interbank briefly ~18%) to November 2020 (0.10%), continuous deflation in semiconductors and consumer hardware anchored global core inflation and let rate expectations fall for a generation. In 2026 the sign reversed: hyperscaler AI capital expenditure, memory and fab constraints, and power-grid competition make technology goods a net <b>driver</b> of inflation &#8212; compounded by fiscal expansion, deglobalisation and defence rearmament. The RBA&#8217;s September 2026 statement names AI-related demand in technology prices directly.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">17.5% &#8594; 0.1%</div><div class="k">1990 PEAK &#8594; 2020 TROUGH</div></div>
+            <div class="cell"><div class="v num">4.0% YoY</div><div class="k">AU HEADLINE CPI, AUG 2026</div></div>
+            <div class="cell"><div class="v num">4.7% ann.</div><div class="k">AU 3-MONTH ANNUALISED CPI</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>The forty-year cheat code broke</h4>
+          <ul class="sr-fast-lines">
+            <li>For forty years laptops and TVs got cheaper every year. That kept inflation and mortgage rates low.</li>
+            <li>Now AI companies are buying every microchip and power plant on earth &#8212; pushing tech prices UP for the first time in half a century.</li>
+            <li>Add governments spending like there is no tomorrow, wars, and factories moving home = inflation stays.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> low interest rates are not coming back, because tech now causes inflation instead of curing it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 02 &#183; THE SECOND RODEO &#8212; CENTRAL BANK RATE PATH</span><span class="sr-chip verified"><span class="sq"></span>RBA 4.60% / FED 3.75&#8211;4.00% VERIFIED</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>The chastened second hiking cycle, in both capitals at once</h3>
+          <div class="sr-body">The RBA paused at 4.35% in November 2023 &#8212; declining its own staff modelling for a 5.0% cash rate and a 5.0% NAIRU &#8212; then cut three times in 2025 to 3.60%, and has since delivered <b>four 25bp hikes in 2026</b> (4 Feb, 18 Mar, 6 May, 29 Sep) to <b>4.60%</b>, the September decision unanimous, the highest since November 2011. Next meeting: 3 November. In Washington, the FOMC hiked +25bp on 16 September to <b>3.75&#8211;4.00%</b> on a 12&#8211;0 vote under Chair Kevin Warsh (the broadcast said &#8220;Walsh&#8221;; the transcript misspoke). The SEP median projects 4.1% at end-2026 &#8212; roughly one more hike &#8212; while the filed house view models +125 to +200bp, a replay of 1999&#8211;2000&#8217;s 175bp to 6.50%.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">4.60%</div><div class="k">RBA CASH RATE, 4 HIKES IN 2026</div></div>
+            <div class="cell"><div class="v num">3.75&#8211;4.00%</div><div class="k">FED TARGET RANGE, SEP 2026</div></div>
+            <div class="cell"><div class="v num">+125&#8211;200bp vs +25bp</div><div class="k">FILED FORECAST VS SEP MEDIAN</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>They cut too early. Now they are hiking with a grudge</h4>
+          <ul class="sr-fast-lines">
+            <li>The RBA cut rates three times in 2025, right into an election. Inflation roared back to 4%.</li>
+            <li>They have already hiked four times in 2026, up to 4.60%. One or two more are live for November.</li>
+            <li>America&#8217;s new Fed chair (Kevin Warsh &#8212; not &#8220;Walsh&#8221;) started hiking in September, with most officials expecting another.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> do not bet on rate cuts. Embarrassed central banks will crush demand to kill inflation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 03 &#183; SOVEREIGN CURVE &amp; THE BESSENT BACKFIRE</span><span class="sr-chip verified"><span class="sq"></span>US 10Y 5.36% / AU 10Y 5.4% VERIFIED</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>Every asset reprices off the iron discount rate</h3>
+          <div class="sr-body">The US 10-year runs ~5.36% &#8212; highest since 2002 &#8212; and the Australian 10-year peaked at 5.43% in September, highest since 2011: 250bp of term-premium repricing in one cycle, the price of money for every borrower on earth. When US 30-year fixed mortgage rates jumped from 6.0% to 6.7%, Treasury Secretary Scott Bessent tripled official buybacks ($2bn &#8594; $6bn) to cap the ~5.25% 30-year yield. The market faded the intervention and the yield <b>rose</b> to 5.6&#8211;5.7%. Meanwhile the Shiller CAPE sits near 41&#215; across major trackers (40.4&#8211;41.6 depending on series), second only to the 44.2&#215; record of December 1999 &#8212; after which the S&amp;P 500 fell ~49% and the Nasdaq ~78%.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">5.36% / 5.4%</div><div class="k">US / AU 10-YEAR PEAKS</div></div>
+            <div class="cell"><div class="v num">5.6&#8211;5.7%</div><div class="k">US 30-YEAR, POST-INTERVENTION</div></div>
+            <div class="cell"><div class="v num">&#8776;41&#215; vs 44.2&#215;</div><div class="k">CAPE TODAY VS 1999 RECORD</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>You cannot bully the bond market</h4>
+          <ul class="sr-fast-lines">
+            <li>World borrowing costs are at 15&#8211;24-year highs (~5.3&#8211;5.5%).</li>
+            <li>The US Treasury boss bragged &#8220;don&#8217;t bet against the house&#8221;, spent $6 billion trying to force long-term rates down &#8212; and rates shot UP instead (30-year 5.25% &#8594; 5.7%).</li>
+            <li>US stocks are priced near the 2000 dot-com peak (41&#215; vs 44&#215; earnings &#8212; and 2000 ended with tech down 78%).</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> nobody controls the bond market. High bond yields are gravity: they drag expensive stocks and property back to earth.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 04 &#183; EQUITIES &amp; AI CAPEX VALUATION RISK</span><span class="sr-chip"><span class="sq"></span>RISK POSTURE</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>Long-duration equity priced through a repricing discount rate</h3>
+          <div class="sr-body">The arithmetic is brutal and simple: as the risk-free rate crosses ~5.3&#8211;5.7%, every cash flow weighted to the distant future &#8212; AI infrastructure, unprofitable growth, long-dated property &#8212; gets discounted harder. With the CAPE near its 1999 extreme and the long bond making multi-decade highs, recent raises and floats are being pulled for &#8220;appetite&#8221; (the broadcast&#8217;s Firmus example), not because the technology stopped working. Two failure modes matter for credit committees: <b>multiple compression</b> in listed AI equity, and <b>capex-cycle cancellations</b> if hyperscaler fundamentals wobble &#8212; both transmit into Australia through funding costs and superannuation balances, not just the Nasdaq tape.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">&#8722;49% / &#8722;78%</div><div class="k">S&amp;P / NASDAQ, 2000&#8211;2002</div></div>
+            <div class="cell"><div class="v num">155 yrs</div><div class="k">SHILLER SERIES LENGTH (BEGINS 1871)</div></div>
+            <div class="cell"><div class="v num">PULLED</div><div class="k">AI-ERA FLOATS, ON APPETITE</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>Stocks are priced for perfection</h4>
+          <ul class="sr-fast-lines">
+            <li>US stocks are the second-most expensive in recorded history (41&#215; earnings vs 44&#215; right before the 2000 crash).</li>
+            <li>When safe government bonds pay over 5.3%, mega-expensive tech stocks get squeezed first.</li>
+            <li>Some AI-era share sales are already being pulled &#8212; not because AI stopped working, but because buyers want a bigger discount.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> expensive assets do not crash because they are evil. They crash because the safe alternative got good.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 05 &#183; AUSTRALIAN RESIDENTIAL &#8212; CLAIM VS INDEX</span><span class="sr-chip corrected"><span class="sq"></span>AUDIT-CORRECTED &#8212; ANNUALISED &#8800; CUMULATIVE</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>Residential drawdown audit: run-rate velocity is not the measured fall</h3>
+          <div class="sr-body">The broadcast&#8217;s headline: Sydney falling at &#8722;18% annualised (peak-to-trough forecast &#8722;17%; worst suburbs &#8722;20% to &#8722;40%) and national at &#8722;16% annualised (&#8722;13% peak-to-trough, &#8220;the biggest fall on record before Christmas&#8221;). Measured, Cotality October 2026: <b>Sydney &#8722;8.6% peak-to-trough</b> (&#8722;1.4% MoM, &#8722;4.9% QoQ, &#8722;7.0% YoY since the February peak), <b>national &#8722;5.2%</b> after six straight monthly falls (&#8722;1.1% MoM, ~0.0% YoY since March). Annualising a single month&#8217;s momentum (&#8722;1.1% &#215; 12 &#8776; &#8722;13%; worst months &#215; 12 &#8776; &#8722;17%) is velocity, not drawdown; if sustained it precedes the forecast, but it is not the number yet on the index. Underneath: 97% of capital-city suburbs fell in Q3, off-the-plan sales have stopped, and the 2026 budget tax changes (trust tax 30%; CGT discount 50% &#8594; 30% inflation-adjusted from July 2027; negative-gearing curbs) land like another <b>200&#8211;270bp</b> on investor borrowing capacity.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">&#8722;8.6% / &#8722;5.2%</div><div class="k">SYDNEY / NATIONAL, MEASURED P2T</div></div>
+            <div class="cell"><div class="v num">&#8722;18% / &#8722;16%</div><div class="k">CLAIMED ANNUALISED RUN-RATES</div></div>
+            <div class="cell"><div class="v num">200&#8211;270bp</div><div class="k">IMPLIED INVESTOR HIT, 2026 BUDGET</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>House prices are falling &#8212; but check the maths tricks</h4>
+          <ul class="sr-fast-lines">
+            <li>He says Sydney is dropping 18% and Australia 16%. Where that came from: one bad month, multiplied by 12.</li>
+            <li>Real numbers so far: Sydney down &#8722;8.6% since February, Australia down &#8722;5.2% since March. Ugly, but not yet a record.</li>
+            <li>And the new budget rules on investors hit like an extra 2&#8211;2.7% interest rate on top.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> property is falling toward the forecast (&#8722;13% to &#8722;17%), not through it yet. Off-the-plan developers are frozen today.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 06 &#183; COMMERCIAL PROPERTY &amp; CAP RATES</span><span class="sr-chip"><span class="sq"></span>STRUCTURAL &#8212; NEGATIVE LEVERAGE</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>Prime office trades inside the risk-free rate&#8217;s shadow</h3>
+          <div class="sr-body">Premium/core CBD office yields sit near <b>6.1%</b> net (~5.5% gross on some measures) against a 5.25&#8211;5.5% sovereign and semi-government curve: a 60&#8211;85bp risk premium for illiquid, capex-hungry, lease-duration assets, and <b>negative leverage</b> against ~6.5% senior commercial debt. Restoring the historical 200&#8211;250bp risk premium does not require a crash narrative; it requires <b>20%+ capital write-downs</b> that the market is still arguing about. Western Sydney shows the same math heavier: Parramatta A-grade near 7.15% with vacancy in the low twenties, secondary stock obsolete and residential towers stalled behind the August credit shock.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">6.1% vs 5.4%</div><div class="k">PRIME OFFICE VS 10Y &#8212; +60&#8211;85bp</div></div>
+            <div class="cell"><div class="v num">7.15% / 21.4%</div><div class="k">PARRAMATTA A-GRADE CAP / VACANCY</div></div>
+            <div class="cell"><div class="v num">20%+</div><div class="k">WRITE-DOWN TO RESTORE 200bp PREMIUM</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>Office towers make no sense right now</h4>
+          <ul class="sr-fast-lines">
+            <li>Big-city offices pay investors ~6.1%. 100%-safe government bonds pay ~5.4%.</li>
+            <li>Why take office risk &#8212; tenants, capex, vacancy &#8212; for an extra 0.7%? You would not.</li>
+            <li>So office prices need to fall 20%+ before the maths works. That is not a crash forecast; that is arithmetic.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> in office and BTR feasibility, the exit cap rate is a spot yield on a repriced curve. Underwrite to 7.4% and the site prices itself.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 07 &#183; PRIVATE CREDIT CONTAGION</span><span class="sr-chip verified"><span class="sq"></span>RECORD INSOLVENCIES + ASIC ACTIONS VERIFIED</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>1991-style credit rationing, rebuilt on non-bank capital</h3>
+          <div class="sr-body">ASIC data record a nominal record: 14,722 company insolvencies in FY25, 14,152 in FY26, and <b>1,808 in August 2026 alone</b> (+65.9% YoY). Australia&#8217;s ~$213bn private credit market is under active enforcement after the August collapse of a <b>$3.4bn Sydney developer</b> triggered redemption gates across wholesale funds; ASIC has since placed interim stop orders on retail private-credit vehicles. Mechanically: presales stop &#8594; developers cannot refinance &#8594; mezzanine funds gate exits &#8594; new lending freezes &#8594; the sites that were going to settle do not. That is a negative feedback loop on exactly the non-bank channel that replaced the bank credit of 1991.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">1,808 / mo</div><div class="k">INSOLVENCIES, AUG 2026 &#8212; RECORD</div></div>
+            <div class="cell"><div class="v num">$3.4BN</div><div class="k">SYDNEY DEVELOPER COLLAPSE, AUG 2026</div></div>
+            <div class="cell"><div class="v num">$213BN</div><div class="k">PRIVATE CREDIT MARKET UNDER REVIEW</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>Shadow banks are freezing up</h4>
+          <ul class="sr-fast-lines">
+            <li>Risky builders could not get bank loans, so they borrowed from &#8220;private credit&#8221; funds at 14&#8211;18%.</li>
+            <li>In August a $3.4 billion Sydney developer went bust. Investors tried to pull their cash out; funds locked the exits.</li>
+            <li>1,808 Australian companies went broke in one month. That is the all-time record.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> stay away from high-yield property debt funds. When the builders cannot sell, the fund cannot pay you out.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 08 &#183; FISCAL TRAJECTORY, TAX SHOCKS &amp; THE FUTURE FUND</span><span class="sr-chip corrected"><span class="sq"></span>DEBT VERIFIED / INTEREST CORRECTED</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>Two trillion by 2030, against a sovereign fund that out-earns the debt</h3>
+          <div class="sr-body">Gross government debt has risen ~$660bn since 2022; the PBO projects combined federal ($1.26tn) and state ($771bn) gross debt of <b>$2.034tn by FY2030</b> (up from ~$100bn in 2007). The broadcast&#8217;s &#8220;$110bn a year in interest&#8221; assumes refinancing the entire stack at ~5.5% spot; the PBO&#8217;s measured line is <b>$54.2bn in FY27 rising to $77.2bn by FY30</b> &#8212; debt rolls gradually, not at yesterday&#8217;s rate. On the Future Fund: $356.0bn total ($289.7bn main + $66.3bn special-purpose funds), ten-year return 9.0% p.a. against a 7.1% mandate, earning $37.4bn in FY26 versus ~$25.2bn of Commonwealth debt interest. Raiding it to repay ~5.25% debt is value-destructive in aggregate; the only true negative carry is the ~$30bn sitting in cash at ~4% against higher borrowing costs. And the &#8220;$150bn&#8221; is 7.5% of $2tn, not the 12% claimed.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">$2.034TN</div><div class="k">PBO 2030 COMBINED GROSS DEBT</div></div>
+            <div class="cell"><div class="v num">$77.2BN vs $110BN</div><div class="k">PBO INTEREST VS SPOT-REFI MATHS</div></div>
+            <div class="cell"><div class="v num">9.0% vs 5.25%</div><div class="k">FUTURE FUND RETURN VS DEBT COST</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>The two-trillion debt bomb &#8212; and how to protect your cash</h4>
+          <ul class="sr-fast-lines">
+            <li>Total government debt is heading to $2 TRILLION by 2030. Interest alone runs $77&#8211;110 billion a year.</li>
+            <li>The plan you will hear &#8212; raid the Future Fund, slash NDIS, hike GST, zero migration &#8212; includes at least two arithmetic errors, corrected on the left.</li>
+            <li>Meanwhile the Future Fund earns 9% while the debt it would repay costs about 5.25%.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> cash is king while everything reprices. Floating-rate cash pays you more every time the RBA hikes, with no lock-up.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-mod">
+      <div class="sr-mod-no" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <span>MODULE 09 &#183; LABOUR, THE NZ CANARY &amp; POSITIONING</span><span class="sr-chip"><span class="sq"></span>FORECAST &#8212; DEMAND DESTRUCTION BY DESIGN</span>
+      </div>
+      <div class="sr-grid2">
+        <div class="sr-left">
+          <h3>The narrow path is retired; the RBA is in the demand-destruction business</h3>
+          <div class="sr-body">Unemployment sits at 4.6% (trend; 4.7% seasonally adjusted, September) against an RBA staff NAIRU of 5.0% and a board that spent two years arguing for the low fours before capitulating. The signal to committees: policy now intends to raise unemployment toward 5&#8211;6% to rebuild capacity &#8212; not 1991&#8217;s ~11%, but a real earnings and vacancies shock. The New Zealand canary argues against a quick pivot: the RBNZ hiked to 5.50%, put the economy in a genuine recession, pushed joblessness from the high threes to 5.6%, has cut the OCR all the way to 2.25% &#8212; and core inflation still sits at 2.5% against a 2.0% target. The trade for a balance sheet in this regime is not clever; it is liquid: floating-rate, investment-grade, short-duration cash instruments, with dry powder reserved for cap-rate repricing.</div>
+          <div class="sr-kv">
+            <div class="cell"><div class="v num">4.6% &#8594; 5&#8211;6%</div><div class="k">UNEMPLOYMENT, NOW AND INTENDED</div></div>
+            <div class="cell"><div class="v num">5.6% / 2.5%</div><div class="k">NZ JOBLESS / CORE CPI VS 2% TARGET</div></div>
+            <div class="cell"><div class="v num">FLOATING</div><div class="k">PORTFOLIO POSTURE, THIS CYCLE</div></div>
+          </div>
+        </div>
+        <div class="sr-right">
+          <div class="fast-flag">FAST TAKE</div>
+          <h4>Jobs will go &#8212; here is how to survive the ride</h4>
+          <ul class="sr-fast-lines">
+            <li>The RBA has given up on the soft landing. They want unemployment higher &#8212; 5% to 6%.</li>
+            <li>New Zealand is the warning: hiked hard, caused a recession, unemployment hit 5.6%, and inflation STILL is not dead.</li>
+            <li>Your move: safe, liquid, floating-rate cash &#8212; and patience while everything else reprices.</li>
+          </ul>
+          <div class="sr-bottom"><b>Bottom line:</b> the pain is the policy. Position so the repricing pays YOU, not the other way round.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(64px,10vh,130px)">
+      <div class="sec-head rv"><span class="sec-no">THE PRECINCT BOARD &#8212; SYDNEY CBD &amp; TIER-1 TOD</span><span class="eyebrow"><span class="dot"></span>CLICK A ROW TO LOAD THE SONAR</span></div>
+      <p class="body rv rv-d1" style="max-width:74ch;margin-bottom:6px">
+        Eight corners of the same market. Cumulative moves are measured to the October 2026 index; annualised figures are the run-rate the broadcast ran, printed alongside so the gap stays visible. Green is an opportunity, red is a trap, amber is wait. The board and the four-dimensional sonar above are the same eight nodes.
+      </p>
+    </div>
+    <div class="sr-board rv rv-d2" id="sr-board" role="list">
+      <div class="sr-prow" data-i="0" role="button" tabindex="0" aria-label="Sydney CBD core">
+        <div class="no">01</div>
+        <div class="name"><b>SYDNEY CBD CORE &#8212; PREMIUM / A-GRADE</b>Net yield ~6.13% vs 5.43% 10Y ACGB: +70bp for illiquid, capex-heavy risk. Senior debt ~6.65% = negative leverage; a &#8722;20% to &#8722;24% write-down is what restores a 200bp premium.</div>
+        <div class="fast-col">Safe bonds pay 5.4%. Towers pay 6.1%. Nobody takes tower risk for 0.7%. Avoid until repriced.</div>
+        <div class="tag">CAP-RATE TRAP</div>
+      </div>
+      <div class="sr-prow" data-i="1" role="button" tabindex="0" aria-label="Rockdale TOD">
+        <div class="no">02</div>
+        <div class="name"><b>ROCKDALE TOD &#8212; T4 ILLAWARRA SPINE</b>Measured &#8722;8.9% cumulative (&#8722;17.4% annualised run-rate). NSW TOD SEPP uplift (FSR 3:1+, 22m+) colliding with 15&#8211;18% private-credit land-bank facilities; presales frozen.</div>
+        <div class="fast-col">Upzoned train-corridor sites, held by builders who cannot refinance their shadow loans. Hunt forced sales at 65&#8211;70c on the dollar.</div>
+        <div class="tag">DISTRESS TARGET</div>
+      </div>
+      <div class="sr-prow" data-i="2" role="button" tabindex="0" aria-label="Kogarah health and rail hub">
+        <div class="no">03</div>
+        <div class="name"><b>KOGARAH &#8212; HEALTH &amp; RAIL HUB</b>Measured &#8722;8.2% cumulative (&#8722;15.8% annualised). St George Hospital and the T4 anchor 5.0%+ gross yields; boutique syndicates face Q4 redemption gates.</div>
+        <div class="fast-col">Doctors, nurses and commuters keep the rent flowing while busted builders sell sites cheap.</div>
+        <div class="tag">ACCUMULATE</div>
+      </div>
+      <div class="sr-prow" data-i="3" role="button" tabindex="0" aria-label="Marrickville metro corridor">
+        <div class="no">04</div>
+        <div class="name"><b>MARRICKVILLE METRO &#8212; INNER WEST</b>Measured &#8722;7.4% cumulative (&#8722;14.9% annualised). Southwest Metro uplift supports long-term land value; mezzanine-funded mixed-use amalgamations hit Q4 refinancing walls.</div>
+        <div class="fast-col">The new Metro makes the land gold long-term. Small syndicates are being forced to sell early right now.</div>
+        <div class="tag">SELECTIVE</div>
+      </div>
+      <div class="sr-prow" data-i="4" role="button" tabindex="0" aria-label="Mascot and Green Square">
+        <div class="no">05</div>
+        <div class="name"><b>MASCOT / GREEN SQUARE &#8212; HIGH DENSITY</b>Measured &#8722;11.2% cumulative (&#8722;22.5% annualised). Unit oversupply plus investor offloading ahead of the 1 July 2027 tax changes (200&#8211;270bp equivalent).</div>
+        <div class="fast-col">Too many identical apartments, and investors are racing the exit before the tax rules change. Stay clear.</div>
+        <div class="tag">FALLING KNIFE</div>
+      </div>
+      <div class="sr-prow" data-i="5" role="button" tabindex="0" aria-label="Parramatta CBD">
+        <div class="no">06</div>
+        <div class="name"><b>PARRAMATTA CBD &#8212; WESTERN CORE</b>A-grade near 7.15% cap, vacancy 21.4%; epicentre of the August 2026 $3.4bn developer collapse; secondary stock obsolescent, towers stalled.</div>
+        <div class="fast-col">Half-empty offices and busted sites. The only play here is distressed senior debt at a deep discount to face.</div>
+        <div class="tag">LIQUIDATION ZONE</div>
+      </div>
+      <div class="sr-prow" data-i="6" role="button" tabindex="0" aria-label="Chatswood metro corridor">
+        <div class="no">07</div>
+        <div class="name"><b>CHATSWOOD / MACQUARIE &#8212; NORTH SHORE SPINE</b>Measured &#8722;7.8% cumulative (&#8722;15.2% annualised). Tier-1 TOD demand, but $22,000+/sqm break-evens freeze new starts despite strong downsizer equity.</div>
+        <div class="fast-col">Blue-chip location, but construction costs are crazy. Wait for land to shed another 8&#8211;10%.</div>
+        <div class="tag">WATCHLIST</div>
+      </div>
+      <div class="sr-prow" data-i="7" role="button" tabindex="0" aria-label="Bankstown metro terminal">
+        <div class="no">08</div>
+        <div class="name"><b>BANKSTOWN &#8212; METRO TERMINAL TOD</b>Measured &#8722;9.6% cumulative (&#8722;19.1% annualised). High-mortgage-belt sensitivity to 4.60%; non-bank arrears climbing into the Metro-terminal upzoning.</div>
+        <div class="fast-col">2026&#8217;s rate hikes hit borrowers hardest here. Watch for mortgagee sales on the corner blocks.</div>
+        <div class="tag">MORTGAGEE RADAR</div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(64px,10vh,130px)">
+      <div class="sec-head rv"><span class="sec-no">THE MECHANICS &#8212; HOW THE LEFT COLUMN UNDERWRITES</span><span class="eyebrow"><span class="dot"></span>FORMULAS SO THE RIGHT COLUMN CAN BE CHECKED</span></div>
+    </div>
+    <div class="sr-mech rv rv-d1">
+      <div class="mrow">
+        <div class="label">BUILDABLE GFA</div>
+        <div class="instr">GFA = site area &#215; FSR (TOD SEPP controls); net saleable &#8776; 0.80 &#215; GFA. 1,600m&#178; at 3.5:1 &#8594; 5,600m&#178; of floorspace.</div>
+        <div class="fast">Multiply the land size by the zoning number. That is how much building the site allows.</div>
+      </div>
+      <div class="mrow">
+        <div class="label">CAP-RATE WRITE-DOWN</div>
+        <div class="instr">Required yield = 10Y (5.4%) + 200bp &#8776; 7.4%. A 6.1&#8211;6.5% asset re-prices &#8722;17.5% to &#8722;24% to reach it on flat income.</div>
+        <div class="fast">Every 1% cap rates rise, building values drop ~13&#8211;16%. Office maths is broken until prices fall 20%+.</div>
+      </div>
+      <div class="mrow">
+        <div class="label">RESIDUAL LAND VALUE</div>
+        <div class="instr">RLV = GDV &#247; (1 + 18% margin) &#8722; hard cost &#8722; finance carry &#8722; statutory. Hard costs $5,400&#8211;6,800/m&#178; GFA; mezzanine carry 14&#8211;18% p.a.</div>
+        <div class="fast">Take what the finished building sells for, subtract build cost, interest and profit. What is left is the maximum you can pay for the dirt.</div>
+      </div>
+      <div class="mrow">
+        <div class="label">DISTRESS HAIRCUT</div>
+        <div class="instr">Haircut = 1 &#8722; RLV &#247; peak-2025 valuation. Mortgagee sale triggers above ~75% look-through LVR; receivers clear at 62&#8211;72c.</div>
+        <div class="fast">If they bought at the 2025 peak with shadow-bank debt, their equity is gone. Bid to the receiver, not the owner.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(64px,10vh,130px)">
+      <div class="sec-head rv"><span class="sec-no">THE CORRECTIONS FILE</span><span class="eyebrow"><span class="dot"></span>WHAT THE DESK FIXED &#8212; PRINTED, NOT HIDDEN</span></div>
+      <div class="ledger rv rv-d1">
+        <div class="it"><b>01</b><span>Annualised run-rate is not cumulative drawdown. The broadcast&#8217;s &#8722;18% / &#8722;16% annualised claims sit beside measured peak-to-trough falls of &#8722;8.6% (Sydney) and &#8722;5.2% (national). Both printed; the index wins.</span></div>
+        <div class="it"><b>02</b><span>&#8220;Cut the NDIS 75% to ~$25bn&#8221; does not close: 75% off $50&#8211;60bn leaves $12.5&#8211;15bn. The speaker&#8217;s own numbers disagree; corrected here, verbatim in the archive.</span></div>
+        <div class="it"><b>03</b><span>Future Fund addition drifts mid-sentence: $60bn + $60&#8211;70bn = $120&#8211;130bn. The &#8220;$150bn&#8221; borrows the 9% realised-return figure; the 7% mandate gives ~$60bn.</span></div>
+        <div class="it"><b>04</b><span>The 1990 cash-rate peak was 17.50% official (Jan 1990); ~18% refers to late-1989 interbank dealings. History corrected, not rounded.</span></div>
+        <div class="it"><b>05</b><span>The Fed chair is Kevin Warsh; the transcript&#8217;s &#8220;Kevin Walsh&#8221; is a speech-to-text error. Verified against the 16 Sep statement and press conference.</span></div>
+        <div class="it"><b>06</b><span>&#8220;$110bn a year in interest&#8221; assumes refinancing the whole $2tn stack at ~5.5% spot. The PBO&#8217;s measured line is $54.2bn (FY27) rising to $77.2bn (FY30). Debt rolls gradually.</span></div>
+        <div class="it"><b>07</b><span>The negative-gearing curbs are the 2026 budget&#8217;s measures being attacked &#8212; not the speaker&#8217;s recommendation. He proposes unwinding them. An earlier summary had this backwards; it is corrected here.</span></div>
+        <div class="it"><b>08</b><span>The filed +125&#8211;200bp Fed forecast is a house view, not the committee: the SEP median is 4.1% end-2026 (about one more hike). Forecast labelled as forecast.</span></div>
+        <div class="it"><b>09</b><span>&#8220;$150bn off the debt&#8221; is 7.5% of $2tn, not the 12% claimed. Arithmetic checked twice.</span></div>
+        <div class="it"><b>10</b><span>The insolvency record is nominal: 1,808 administrations in August 2026 is a record count, while as a share of registered companies the rate stays below the 2012&#8211;13 peak. Record, with the caveat attached.</span></div>
+      </div>
+    </div>
+
+    <div class="concessions rv rv-d1">
+      <div class="h">METHOD &amp; SOURCES &#8212; SO A STRANGER COULD REPEAT IT</div>
+      <p>
+        Audit performed 18 October 2026 against the broadcast of 12 October 2026 and the following primary sources: RBA monetary-policy decision MR-26-27 and the cash-rate table (29&#8211;30 September 2026); FOMC statement, Summary of Economic Projections and chair&#8217;s press conference (16 September 2026); Cotality Home Value Index (October 2026 release); ASIC insolvency statistics (FY25&#8211;FY26 series); Parliamentary Budget Office National Fiscal Outlook (August 2026); Future Fund portfolio update (30 June 2026); CBRE/Cushman prime-office data (Q3 2026); Robert Shiller&#8217;s CAPE series via Multpl and Yale; the Straight Talk broadcast auto-transcript (12 October 2026).
+      </p>
+    </div>
+    <p class="inst-note rv">
+      Registers: left column, measured versus claimed, with source class named. Right column, the same audit at street altitude. Where the broadcast and the primary source disagree, the source is printed and the correction is filed above. Forecasts are labelled forecasts; measured figures are labelled measured. This dossier is analysis, not financial product advice, legal counsel, or a prediction guarantee. The full transcript remains in the archive.
+    </p>
+
+    <div style="margin-top:clamp(56px,9vh,110px);display:flex;gap:28px;flex-wrap:wrap;justify-content:space-between;border-top:1px solid var(--hair);padding-top:28px">
+      <a class="plate-link rv" href="/shadowclone/" style="margin:0">THE ARCHIVE &#8212; SHADOW.BLACK/SHADOWCLONE &#8594;</a>
+      <a class="plate-link rv rv-d1" href="/dossier/PBI-SECOND-RODEO-DOSSIER-OCT-2026.pdf" style="margin:0">THE DOSSIER AS PAPER &#8212; PDF &#8594;</a>
+      <a class="plate-link rv rv-d2" href="https://witchcraft.expert/prophecy#prophecy-xiv" style="margin:0">THE PROPHECY CONTINUES &#8212; PROPHECY XIV &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<script src="/js/sr-sonar.js" defer></script>
+<!-- ===== END APPENDED MODULE VII — THE SECOND RODEO ===== -->
 
 <footer>
   <div class="wrap">
